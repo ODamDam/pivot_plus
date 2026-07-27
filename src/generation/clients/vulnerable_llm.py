@@ -205,6 +205,15 @@ class VulnerableLLMClient:
                 "Generation response field 'meta' must be an object"
             )
 
+        done = meta.get("done")
+        done_reason = meta.get("done_reason")
+
+        if done is False:
+            raise GenerationResponseError(
+                "Generation server returned an incomplete Ollama result: "
+                f"done={done!r}, done_reason={done_reason!r}"
+            )
+
         return ClientGenerationResult(
             execution_status=execution_status,
             response_text=response_text,
