@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - benchmark_net
+    restart: always
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1 
+              capabilities: [gpu]
+
+  vulnerable_llm:
+    build: ./vulnerable_llm      
+    container_name: vul_llm_app
+    ports:
+      - "8000:8000"               
+    volumes:
+      - ./vulnerable_llm:/app     
+    depends_on:
+      - ollama                    
+    env_file:
+      - .env                     
+    networks:
+      - benchmark_net
+
+networks:
+  benchmark_net:
+    driver: bridge
+
+volumes:
+  ollama_data:

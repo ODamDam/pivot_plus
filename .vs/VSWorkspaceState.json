@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\mutation",
+    "\\scanner",
+    "\\scanner_input",
+    "\\scanner_input\\core",
+    "\\scanner_input\\integrations",
+    "\\scanner_input\\integrations\\garak",
+    "\\scanner_input\\integrations\\pyrit"
+  ],
+  "PreviewInSolutionExplorer": false
+}

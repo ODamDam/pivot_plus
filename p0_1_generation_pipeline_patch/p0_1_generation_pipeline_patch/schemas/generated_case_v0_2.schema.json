@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "generated_case_v0_2.schema.json",
+  "title": "Generated Prompt-Response Evaluation Case v0.2",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "case_id",
+    "generation_id",
+    "lineage",
+    "attack",
+    "prompt",
+    "response",
+    "target_generation",
+    "execution_status"
+  ],
+  "properties": {
+    "schema_version": {"const": "generated_case.v0.2"},
+    "case_id": {"type": "string", "minLength": 1},
+    "generation_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": ["string", "null"]},
+    "testcase_id": {"type": ["string", "null"]},
+    "run_id": {"type": ["string", "null"]},
+    "lineage": {
+      "type": "object",
+      "required": ["seed_id", "mutation_id", "trace"],
+      "properties": {
+        "seed_id": {"type": ["string", "null"]},
+        "mutation_id": {"type": ["string", "null"]},
+        "operator_id": {"type": ["string", "null"]},
+        "parent_id": {"type": ["string", "null"]},
+        "source_schema_version": {"type": ["string", "null"]},
+        "trace": {"type": "array"}
+      },
+      "additionalProperties": true
+    },
+    "benchmark_category": {"type": ["string", "null"]},
+    "attack": {
+      "type": "object",
+      "required": [
+        "delivery_channel",
+        "attack_type",
+        "primary_objective_id",
+        "objective_text",
+        "expected_markers",
+        "metadata_status"
+      ],
+      "properties": {
+        "delivery_channel": {"type": ["string", "null"]},
+        "attack_type": {"type": ["string", "null"]},
+        "primary_objective_id": {"type": ["string", "null"]},
+        "objective_text": {"type": ["string", "null"]},
+        "expected_markers": {"type": "array", "items": {"type": "string"}},
+        "metadata_status": {
+          "enum": ["complete", "objective_metadata_missing"]
+        }
+      },
+      "additionalProperties": true
+    },
+    "context": {"type": "object"},
+    "prompt": {"type": "string"},
+    "response": {"type": "string"},
+    "target_generation": {"type": "object"},
+    "execution_status": {"const": "completed"},
+    "error": {"type": "null"}
+  },
+  "additionalProperties": true
+}
