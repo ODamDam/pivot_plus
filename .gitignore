@@ -33,3 +33,6 @@ scanner/promptfoo/data/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Visual Studio local workspace
+.vs/
