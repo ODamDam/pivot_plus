@@ -25,8 +25,6 @@ scanner/promptfoo/data/
 
 # temp logs (optional)
 *.log
-*.jsonl
-.env
 
 # editor / OS
 .vscode/
@@ -36,3 +34,31 @@ Thumbs.db
 
 # Visual Studio local workspace
 .vs/
+
+# Data-pipeline generated and local-only artifacts
+*.pyo
+*.pyd
+data/raw/
+data/normalized/
+data/interim/
+data/data_legacy/
+data/99. data_legacy/
+data/llm_output/
+
+# Data-pipeline temporary diagnostics
+tmp_*.py
+*_working_backup.patch
+operators_all_dump.txt
+registry_after_operator_refactor.txt
+/tests/snapshot/_expect*.json
+/tests/snapshot/_got*.json
+/scripts/smoke_out.json
+
+# Generated example outputs
+examples/llm01_demo_out.json
+examples/llm01_execution_inputs.jsonl
+examples/llm01_llmail_seeds.jsonl
+examples/llm01_mutated_prompts.json
+
+# Local single-file experiments
+llm_greybox_fuzzer_single.py

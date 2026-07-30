@@ -22,3 +22,15 @@
 *.sqlite binary
 *.suo binary
 *.vsidx binary
+
+# Research datasets: preserve exact bytes and stable checksums
+data/**/*.csv    -text
+data/**/*.json   -text
+data/**/*.jsonl  -text
+data/**/*.xlsx   -text
+
+# Immutable pre-monorepo archive
+data/archive/pre_monorepo_data_pipeline_20260730/** -text
+
+# Freeze manifests must retain their original bytes
+reports/pre_monorepo_freeze/*.csv -text

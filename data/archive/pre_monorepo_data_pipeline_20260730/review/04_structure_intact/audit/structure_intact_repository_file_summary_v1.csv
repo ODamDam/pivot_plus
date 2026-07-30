@@ -1,0 +1,7 @@
+﻿metric,value
+repository_audit_candidates,80
+strict_keep,46
+strict_drop,34
+selected_for_repository_quota,30
+repository_target,30
+remaining_repository_shortage,0

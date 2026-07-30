@@ -1,0 +1,12 @@
+﻿metric,value
+rescan_audit_rows,60
+rescan_strict_keep,11
+rescan_drop,49
+initial_yaml_keep,2
+combined_yaml_keep,13
+yaml_target,30
+remaining_yaml_shortage,17
+drop_colon_parsed_prose,19
+drop_duplicate_keys,11
+drop_no_prompt_injection_semantics,18
+drop_single_item_sequence,1
