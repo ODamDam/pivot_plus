@@ -1,0 +1,3 @@
+﻿repository,tracked_file_count,tracked_size_mb,top_level_entries,top_level_distribution
+data_pipeline,259,38.041,11,.gitattributes:1; .gitignore:1; README.md:1; data:89; docs:32; examples:6; pytest.ini:1; reports:2; scripts:39; src:53; tests:34
+execution_pipeline,80,11.266,15,.gitattributes:1; .github:3; .gitignore:1; README.md:1; README_P0_1.md:1; auto_runner.py:1; data:7; docker-compose.yml:1; reports:1; requirements.txt:1; scanner:20; scanner_input:12; schemas:1; src:19; vulnerable_llm:10

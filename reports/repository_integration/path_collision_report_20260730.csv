@@ -1,0 +1,6 @@
+﻿path,top_level,same_blob,collision_type,data_pipeline_blob,execution_pipeline_blob,data_pipeline_size_bytes,execution_pipeline_size_bytes,migration_decision,destination_path,review_notes
+.gitattributes,.gitattributes,False,different_content,add4f0e48c566d31bfa92c7628752e6888f74e5f,b4bd51091605764f4566ed1a1c6e45c298f33a41,537,392,,,
+.gitignore,.gitignore,False,different_content,39398b0f7d0f80e8c08eed379a8750e882587691,6a9899394bc82d2123000bb8eef220a1308f3b94,1367,403,,,
+README.md,README.md,False,different_content,31ab90975aa99422ef328103a5ba83a22e046cbc,293baf12c5a75000a4a7c26423feccf7f5117514,13072,29,,,
+reports/pre_monorepo_freeze/FREEZE_NOTES_20260730.md,reports,False,different_content,cd91ae142ec419b047a53cab49d809e6c2b1a6e4,36f383c23c5b32bf58405f918ac988ddde02a997,1641,1566,,,
+src/__init__.py,src,True,identical,e69de29bb2d1d6434b8b29ae775ad8c2e48c5391,e69de29bb2d1d6434b8b29ae775ad8c2e48c5391,0,0,,,
