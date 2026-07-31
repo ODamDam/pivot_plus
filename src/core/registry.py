@@ -67,14 +67,6 @@ class OperatorRegistry:
             "label_change_risk": "MEDIUM",
             "use_in_diagnostic_v1": True,
         },
-        "op_constraint_schema_preserving_mutation": {
-            "operator_family": "structural",
-            "attack_type_compat": ["format_injection", "tool_manipulation"],
-            "output_format": "json",
-            "semantic_preservation_risk": "MEDIUM",
-            "label_change_risk": "MEDIUM",
-            "use_in_diagnostic_v1": True,
-        },
         "op_fmt_markdown_wrapper": {
             "operator_family": "structural",
             "attack_type_compat": [
@@ -137,14 +129,6 @@ class OperatorRegistry:
             "label_change_risk": "MEDIUM",
             "use_in_diagnostic_v1": True,
         },
-        "op_lex_override_instructions": {
-            "operator_family": "lexical",
-            "attack_type_compat": ["instruction_override"],
-            "output_format": "plain_text",
-            "semantic_preservation_risk": "LOW",
-            "label_change_risk": "LOW",
-            "use_in_diagnostic_v1": True,
-        },
         "op_lex_polite_prefix": {
             "operator_family": "contextual",
             "attack_type_compat": ["instruction_override", "policy_bypass"],
@@ -159,18 +143,6 @@ class OperatorRegistry:
             "output_format": "plain_text",
             "semantic_preservation_risk": "LOW",
             "label_change_risk": "LOW",
-            "use_in_diagnostic_v1": True,
-        },
-        "op_lex_shorten": {
-            "operator_family": "lexical",
-            "attack_type_compat": [
-                "instruction_override",
-                "data_exfiltration",
-                "policy_bypass",
-            ],
-            "output_format": "plain_text",
-            "semantic_preservation_risk": "MEDIUM",
-            "label_change_risk": "MEDIUM",
             "use_in_diagnostic_v1": True,
         },
         "op_syn_boundary_delimiter_injection": {

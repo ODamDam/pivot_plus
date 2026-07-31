@@ -70,19 +70,21 @@ For example, structural and robustness-oriented operators such as JSON/YAML wrap
 
 ## 4. Current Code State at the Time of This Decision
 
-After separating broken and out-of-scope operators, the active operator directory contains 16 importable operators.
+After separating broken and out-of-scope operators, the active operator directory contains 17 importable operators.
 
-The registry successfully loads these 16 operators with zero load errors.
+The registry successfully loads these 17 operators with zero load errors.
 
-The legacy bucket-based LLM01 filter currently returns only 8 operators:
+For backward-compatible LLM01 workflows only, the legacy bucket-tag
+prefilter currently resolves the following eight operators. This
+compatibility path is separate from the active bucket-free v2 selector:
 
 ```text
 op_fmt_markdown_wrapper
 op_lex_homoglyph_injection
-op_lex_override_instructions
+op_direct_override_prefix
 op_lex_polite_prefix
 op_lex_refusal_suppression
-op_lex_shorten
+op_salience_preserving_line_compression
 op_syn_boundary_delimiter_injection
 op_syn_fake_tool_instruction_injection
 ```
@@ -243,21 +245,22 @@ The benchmark uses attack-type-specific operator eligibility.
 
 ## 9. Current Active Operator Classification
 
-The following classification is the v2 policy decision for the current 16 active operators.
+The following classification is the v2 policy decision for the current 17 active operators.
 
 | operator | family_final | output_format | action_v2 | notes |
 |---|---|---|---|---|
 | `op_comp_expand_context` | noise_injection / contextual | plain_text | modify_or_conditional_use | Useful for long-context robustness, but must avoid DoS framing. |
-| `op_constraint_schema_preserving_mutation` | structural | json | conditional_use | Use only for JSON/tool-argument-like seeds. |
+| `op_ctx_bypass_review_wrapper` | contextual | plain_text | deny_pending_review | Current manual-review policy excludes it from diagnostic v1. |
+| `op_json_schema_preserving_field_wrap` | structural | json | conditional_use | Wrap only instruction-bearing string fields in valid JSON/tool arguments while preserving keys and control-field types. |
 | `op_fmt_markdown_wrapper` | structural | markdown | modify | Empty seed must return SKIPPED. |
 | `op_fmt_punctuation_resegmentation` | lexical / syntactic | plain_text | keep_or_modify | Useful for surface robustness. Add diagnostic metadata. |
 | `op_fmt_structured_wrapper_json_yaml` | structural | json_or_yaml | keep_or_modify | High-priority structural wrapper. Should be enabled by family, not bucket. |
 | `op_fmt_whitespace_noise` | noise_injection / lexical | plain_text | keep_or_modify | Useful for whitespace/surface perturbation. |
 | `op_lex_homoglyph_injection` | encoding | plain_text | keep_or_modify | Readability and semantic preservation review required at high strength. |
-| `op_lex_override_instructions` | lexical / instruction_override | plain_text | keep | Core prompt injection operator. |
+| `op_direct_override_prefix` | contextual / instruction_override | plain_text | conditional_use | High label-change risk; require an existing attack marker and post-filter review. |
 | `op_lex_polite_prefix` | contextual | plain_text | keep_or_modify | Benign-looking pretext/prefix mutation. |
 | `op_lex_refusal_suppression` | contextual / policy_bypass | plain_text | keep_or_modify | Strong bypass framing; use with policy_bypass or instruction_override. |
-| `op_lex_shorten` | lexical / compression | plain_text | conditional_use | Use only for multiline seeds; semantic preservation must be checked. |
+| `op_salience_preserving_line_compression` | lexical / compression | plain_text | deny_pending_review | Multiline-only implementation preserves salient attack lines, but current manual-review policy excludes it from diagnostic v1. |
 | `op_syn_boundary_delimiter_injection` | structural / syntactic | plain_text | keep | Useful delimiter/boundary mutation. |
 | `op_syn_fake_tool_instruction_injection` | tool_manipulation / contextual | plain_text | keep_or_modify | Useful for tool-related prompt injection cases. |
 | `op_syn_tool_call_argument_perturbation` | tool_manipulation | tool_call_or_arguments | conditional_use | Use only for tool_call or tool_argument surfaces. |
@@ -276,7 +279,6 @@ op_fmt_structured_wrapper_json_yaml
 op_fmt_punctuation_resegmentation
 op_fmt_whitespace_noise
 op_lex_homoglyph_injection
-op_lex_override_instructions
 op_lex_polite_prefix
 op_lex_refusal_suppression
 op_syn_boundary_delimiter_injection
@@ -293,8 +295,8 @@ The following operators should be enabled only when the seed structure supports 
 
 ```text
 op_comp_expand_context
-op_constraint_schema_preserving_mutation
-op_lex_shorten
+op_direct_override_prefix
+op_json_schema_preserving_field_wrap
 op_syn_tool_call_argument_perturbation
 ```
 
@@ -303,8 +305,8 @@ Conditions:
 | operator | condition |
 |---|---|
 | `op_comp_expand_context` | Use only with max length constraints and non-DoS framing. |
-| `op_constraint_schema_preserving_mutation` | Use only when the seed is valid JSON or tool-argument-like input. |
-| `op_lex_shorten` | Use only for multiline prompts where core attack text is preserved. |
+| `op_direct_override_prefix` | Use only for seeds with an existing attack marker and require post-filter review. |
+| `op_json_schema_preserving_field_wrap` | Use only when the seed is a valid JSON object with instruction-bearing string fields. |
 | `op_syn_tool_call_argument_perturbation` | Use only for `TOOL_CALL` or `TOOL_ARGUMENTS` surfaces. |
 
 ---
@@ -314,6 +316,8 @@ Conditions:
 The following operators should not be used until their content and semantics are reviewed:
 
 ```text
+op_ctx_bypass_review_wrapper
+op_salience_preserving_line_compression
 op_syn_trust_violation_trigger
 op_syn_unverified_data_injection
 ```
@@ -477,4 +481,3 @@ label_change_risk
 ```
 
 The old OWASP bucket labels may remain as historical implementation metadata, but they must not control operator selection, benchmark composition, or paper-level analysis.
-
