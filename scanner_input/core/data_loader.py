@@ -16,7 +16,7 @@ def iter_vuln_records(path: Path = VULN_RESULT_PATH) -> Generator[VulnRecord, No
             if not line:
                 continue
             raw = json.loads(line)
-            yield VulnRecord(
+            yield VulnRecord( # 수정 필요
                 seed_id=raw["seed_id"],
                 mutated_prompt=raw["mutated_prompt"],
                 model_output=raw["model_output"],

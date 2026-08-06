@@ -1,0 +1,40 @@
+﻿{
+    "manifest_version":  "blind_second_pass_250_v2_manifest_v1",
+    "created_at":  "2026-08-06T17:23:52.8291981+09:00",
+    "source_file":  "data\\adjudication\\seed_candidates_v1\\final_adjudicated_seed_candidates_250_audit_fixed.jsonl",
+    "source_sha256":  "8278053a6edb49da135208722e9fd57d81ab1ec7ebcd01f0ef16bf1a33c4f7d9",
+    "source_class":  "pre_v2_legacy_migration_input",
+    "record_count":  250,
+    "context_records":  36,
+    "standalone_records":  214,
+    "legacy_labels_exposed":  false,
+    "source_metadata_exposed":  false,
+    "blind_input_file":  "data\\adjudication\\seed_candidates_v2\\blind_second_pass\\blind_second_pass_250_v2.jsonl",
+    "result_template_file":  "data\\adjudication\\seed_candidates_v2\\blind_second_pass\\blind_second_pass_250_v2_results_template.jsonl",
+    "private_map_file":  "data\\adjudication\\seed_candidates_v2\\blind_second_pass\\blind_second_pass_250_v2_private_map.jsonl",
+    "permitted_pi_status":  [
+                                "clear_pi",
+                                "scenario_completable",
+                                "not_pi",
+                                "ambiguous",
+                                "invalid"
+                            ],
+    "permitted_maliciousness":  [
+                                    "malicious_clear",
+                                    "benign_clear",
+                                    "borderline"
+                                ],
+    "permitted_confidence":  [
+                                 "high",
+                                 "medium",
+                                 "low"
+                             ],
+    "deterministic_ordering":  true,
+    "ordering_method":  "sha256_sort",
+    "ordering_seed":  "pivot-plus-blind-second-pass-v2-20260806",
+    "blind_input_sha256":  "eae3d2923767edf79ff47e19024fcedf7286942d0cf4075ab48d0c801d6dd0eb",
+    "result_template_sha256":  "4b1d9d02d140658705e128dd050f0c47e23302d7ae30a26371fd8acb0f119406",
+    "private_map_sha256":  "1c24bd144d905a05ab56d198f5cdf86fbad50244cb8b6a36299ba59cb8bee31d",
+    "package_validation_file":  "reports\\day1_v2_migration\\blind_second_pass_250_v2_validation.json",
+    "package_validation_passed":  true
+}

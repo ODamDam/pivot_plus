@@ -1,0 +1,16 @@
+﻿{
+    "audit_version":  "legacy250_text_structure_audit_v1",
+    "source_file":  "data\\adjudication\\seed_candidates_v1\\final_adjudicated_seed_candidates_250_audit_fixed.jsonl",
+    "source_sha256":  "8278053a6edb49da135208722e9fd57d81ab1ec7ebcd01f0ef16bf1a33c4f7d9",
+    "record_count":  250,
+    "context_records":  36,
+    "non_context_records":  214,
+    "missing_scanner_input":  0,
+    "context_marker_valid":  36,
+    "parsed_user_match":  36,
+    "mutation_target_match":  250,
+    "records_with_issues":  0,
+    "issue_counts":  [
+
+                     ]
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "independent_second_pass_manifest_v1",
+  "source_file": "independent_second_pass_pending_210.jsonl",
+  "total_records": 210,
+  "batch_size": 30,
+  "batch_count": 7,
+  "batches": [
+    {
+      "batch_number": 1,
+      "file": "independent_second_pass_batch_01.jsonl",
+      "records": 30,
+      "first_record_id": "NORM-0016180",
+      "last_record_id": "NORM-0024467"
+    },
+    {
+      "batch_number": 2,
+      "file": "independent_second_pass_batch_02.jsonl",
+      "records": 30,
+      "first_record_id": "NORM-0021932",
+      "last_record_id": "NORM-0024112"
+    },
+    {
+      "batch_number": 3,
+      "file": "independent_second_pass_batch_03.jsonl",
+      "records": 30,
+      "first_record_id": "NORM-0055662",
+      "last_record_id": "NORM-0054008"
+    },
+    {
+      "batch_number": 4,
+      "file": "independent_second_pass_batch_04.jsonl",
+      "records": 30,
+      "first_record_id": "NORM-0054897",
+      "last_record_id": "NORM-0017657"
+    },
+    {
+      "batch_number": 5,
+      "file": "independent_second_pass_batch_05.jsonl",
+      "records": 30,
+      "first_record_id": "NORM-0017636",
+      "last_record_id": "NORM-0052049"
+    },
+    {
+      "batch_number": 6,
+      "file": "independent_second_pass_batch_06.jsonl",
+      "records": 30,
+      "first_record_id": "NORM-0052468",
+      "last_record_id": "NORM-0054167"
+    },
+    {
+      "batch_number": 7,
+      "file": "independent_second_pass_batch_07.jsonl",
+      "records": 30,
+      "first_record_id": "NORM-0054100",
+      "last_record_id": "NORM-0051829"
+    }
+  ]
+}

@@ -65,3 +65,8 @@ For every completed task, report:
 - Whether external APIs or network access were used
 
 Do not create Git commits unless explicitly requested.
+
+## Dataset A 작업 규칙
+Dataset A와 관련된 설계, 구현, 데이터 생성, 변환, 판정, 검증 작업을 시작하기 전에 반드시 다음 문서를 전체 확인한다.
+- `docs\dataset_a\dataset_a_implementation_spec_v1.md`
+해당 문서를 Dataset A의 스키마, 라벨 정의, 판정 절차, Scenario Catalog 및 검증 규칙에 대한 단일 기준 문서로 사용한다. 문서와 기존 코드·데이터가 충돌하면 임의로 해석하지 않고 충돌 내용을 먼저 보고한다.

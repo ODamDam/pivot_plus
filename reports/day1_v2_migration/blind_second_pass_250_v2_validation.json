@@ -1,0 +1,23 @@
+﻿{
+    "validation_version":  "blind_second_pass_package_validation_v1",
+    "validated_at":  "2026-08-06T17:29:58.2259406+09:00",
+    "deterministic_ordering":  true,
+    "ordering_method":  "sha256_sort",
+    "ordering_seed":  "pivot-plus-blind-second-pass-v2-20260806",
+    "blind_count":  250,
+    "template_count":  250,
+    "private_map_count":  250,
+    "blind_ids_unique":  true,
+    "template_ids_unique":  true,
+    "private_map_ids_unique":  true,
+    "blind_ids_complete":  true,
+    "template_ids_match":  true,
+    "private_map_ids_match":  true,
+    "context_records":  36,
+    "standalone_records":  214,
+    "missing_untrusted_input":  0,
+    "forbidden_field_leaks":  0,
+    "blind_input_sha256":  "eae3d2923767edf79ff47e19024fcedf7286942d0cf4075ab48d0c801d6dd0eb",
+    "result_template_sha256":  "4b1d9d02d140658705e128dd050f0c47e23302d7ae30a26371fd8acb0f119406",
+    "private_map_sha256":  "1c24bd144d905a05ab56d198f5cdf86fbad50244cb8b6a36299ba59cb8bee31d"
+}
