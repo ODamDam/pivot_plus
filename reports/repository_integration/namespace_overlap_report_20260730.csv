@@ -1,0 +1,7 @@
+﻿overlap_type,top_level,namespace,data_pipeline_count,execution_pipeline_count,data_pipeline_examples,execution_pipeline_examples,migration_decision,review_notes
+second_level_namespace,.gitattributes,(root-file),1,1,.gitattributes,.gitattributes,,
+second_level_namespace,.gitignore,(root-file),1,1,.gitignore,.gitignore,,
+second_level_namespace,README.md,(root-file),1,1,README.md,README.md,,
+second_level_namespace,reports,pre_monorepo_freeze,2,1,reports/pre_monorepo_freeze/FREEZE_NOTES_20260730.md; reports/pre_monorepo_freeze/local_artifacts_manifest_20260730.csv,reports/pre_monorepo_freeze/FREEZE_NOTES_20260730.md,,
+second_level_namespace,src,__init__.py,1,1,src/__init__.py,src/__init__.py,,
+python_module_root,src,__init__,1,1,,,,

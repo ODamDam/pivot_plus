@@ -1,0 +1,6 @@
+﻿structure_format,target_count,actual_count,source_distribution,status
+markdown,34,34,"{""SRC-01_lakera_gandalf"": 1, ""SRC-05_rogue_security_prompt_injections_benchmark"": 1, ""SRC-09_neuralchemy_prompt_injection_dataset"": 13, ""SRC-10_SCOUT_450"": 19}",complete
+json,34,34,"{""SRC-09_neuralchemy_prompt_injection_dataset"": 4, ""SRC-10_SCOUT_450"": 29, ""SRC-12_bordair_multimodal"": 1}",complete
+yaml,14,14,"{""SRC-06_jailbreak_llms"": 2, ""SRC-09_neuralchemy_prompt_injection_dataset"": 11, ""SRC-12_bordair_multimodal"": 1}",complete
+code_block,38,38,"{""SRC-09_neuralchemy_prompt_injection_dataset"": 4, ""SRC-10_SCOUT_450"": 16, ""SRC-11_microsoft_BIPIA"": 18}",complete
+repository_file,30,30,"{""SRC-07_prodnull_prompt_injection_repo_dataset"": 30}",complete

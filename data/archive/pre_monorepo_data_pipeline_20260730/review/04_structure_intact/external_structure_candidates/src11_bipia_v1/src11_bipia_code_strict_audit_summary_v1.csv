@@ -1,0 +1,12 @@
+﻿metric,value
+audit_candidates,30
+keep,25
+drop,5
+selected_for_code_quota,10
+selected_start,4
+selected_middle,3
+selected_end,3
+code_keep_before_bipia,20
+code_keep_after_selected_bipia,30
+code_target,30
+remaining_code_shortage,0

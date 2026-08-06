@@ -1,0 +1,182 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Diagnostic Benchmark Dataset Schema v1",
+  "type": "object",
+  "required": [
+    "sample_id",
+    "subset",
+    "source_id",
+    "source_record_id",
+    "scanner_input",
+    "is_malicious",
+    "ground_truth_decision",
+    "attack_category",
+    "attack_type",
+    "attack_goal",
+    "attack_surface",
+    "input_format",
+    "language",
+    "is_mutated",
+    "semantic_preservation",
+    "expected_behavior",
+    "review_status",
+    "normalized_record_id",
+    "text_sha256"
+  ],
+  "properties": {
+    "sample_id": { "type": "string" },
+    "subset": {
+      "type": "string",
+      "enum": [
+        "seed_malicious",
+        "mutated_malicious",
+        "structure_intact_malicious",
+        "benign"
+      ]
+    },
+    "parent_seed_id": {
+      "type": ["string", "null"]
+    },
+    "source_id": { "type": "string" },
+    "source_record_id": { "type": "string" },
+    "source_split": { "type": ["string", "null"] },
+    "scanner_input": { "type": "string", "minLength": 1 },
+    "scanner_input_prompt_only": { "type": ["string", "null"] },
+    "scanner_input_with_context": { "type": ["string", "null"] },
+    "is_malicious": { "type": "boolean" },
+    "ground_truth_decision": {
+      "type": "string",
+      "enum": ["malicious", "benign"]
+    },
+    "attack_category": {
+      "type": "string",
+      "enum": [
+        "direct_prompt_injection",
+        "indirect_prompt_injection",
+        "data_risk",
+        "action_risk",
+        "robustness_risk",
+        "benign"
+      ]
+    },
+    "attack_type": {
+      "type": "string",
+      "enum": [
+        "instruction_override",
+        "role_play_bypass",
+        "policy_bypass",
+        "system_prompt_extraction",
+        "data_exfiltration",
+        "format_injection",
+        "indirect_injection",
+        "tool_manipulation",
+        "context_poisoning",
+        "benign_general",
+        "benign_hard_negative",
+        "unspecified"
+      ]
+    },
+    "attack_goal": {
+      "type": "string",
+      "enum": [
+        "override_instruction",
+        "leak_system_prompt",
+        "exfiltrate_secret",
+        "bypass_policy",
+        "manipulate_output_format",
+        "manipulate_tool",
+        "poison_context",
+        "evade_detection",
+        "none"
+      ]
+    },
+    "attack_surface": {
+      "type": "string",
+      "enum": [
+        "user_prompt",
+        "system_user_context",
+        "external_document",
+        "repository_file",
+        "structured_input",
+        "tool_context",
+        "none"
+      ]
+    },
+    "input_format": {
+      "type": "string",
+      "enum": [
+        "plain_text",
+        "markdown",
+        "json",
+        "yaml",
+        "xml",
+        "html",
+        "code_block",
+        "command",
+        "log",
+        "repository_file",
+        "mixed",
+        "encoded",
+        "unknown"
+      ]
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "english",
+        "korean",
+        "mixed",
+        "encoded",
+        "unknown"
+      ]
+    },
+    "is_mutated": { "type": "boolean" },
+    "mutation_family": { "type": ["string", "null"] },
+    "mutation_operator": { "type": ["string", "null"] },
+    "mutation_strength": { "type": ["string", "integer", "null"] },
+    "target_evaluator_weakness": {
+      "type": ["string", "null"],
+      "enum": [
+        "keyword_matching",
+        "regex_boundary",
+        "normalization",
+        "structure_handling",
+        "semantic_understanding",
+        "context_awareness",
+        "judge_consistency",
+        "none",
+        "unknown",
+        null
+      ]
+    },
+    "semantic_preservation": {
+      "type": "string",
+      "enum": [
+        "preserved",
+        "partially_preserved",
+        "not_preserved",
+        "not_applicable"
+      ]
+    },
+    "expected_behavior": {
+      "type": "string",
+      "enum": [
+        "detect_as_malicious",
+        "detect_as_benign",
+        "flag_for_review"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "auto",
+        "manual_reviewed",
+        "disputed"
+      ]
+    },
+    "notes": { "type": ["string", "null"] },
+    "normalized_record_id": { "type": "string" },
+    "text_sha256": { "type": "string" },
+    "metadata_json": {}
+  }
+}

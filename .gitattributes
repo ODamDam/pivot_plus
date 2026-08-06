@@ -1,0 +1,36 @@
+# Source code and configuration
+*.py   text eol=lf
+*.md   text eol=lf
+*.txt  text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.toml text eol=lf
+
+# Windows scripts
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary artifacts
+*.xlsx binary
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.zip  binary
+*.sqlite binary
+*.suo binary
+*.vsidx binary
+
+# Research datasets: preserve exact bytes and stable checksums
+data/**/*.csv    -text
+data/**/*.json   -text
+data/**/*.jsonl  -text
+data/**/*.xlsx   -text
+
+# Immutable pre-monorepo archive
+data/archive/pre_monorepo_data_pipeline_20260730/** -text
+
+# Freeze manifests must retain their original bytes
+reports/pre_monorepo_freeze/*.csv -text

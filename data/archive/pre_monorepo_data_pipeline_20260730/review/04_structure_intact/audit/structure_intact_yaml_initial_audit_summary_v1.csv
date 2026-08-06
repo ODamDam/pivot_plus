@@ -1,0 +1,6 @@
+﻿metric,value
+yaml_audit_candidates,80
+strict_keep,2
+strict_drop,78
+yaml_target,30
+remaining_yaml_shortage,28

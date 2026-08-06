@@ -1,0 +1,11 @@
+﻿metric,value
+expanded_rescan_candidates,2243
+audit_batch_rows,120
+targeted_rows_reviewed,9
+targeted_keep,4
+targeted_drop,5
+markdown_keep_before_rescan,26
+markdown_added_from_rescan,4
+markdown_keep_after_rescan,30
+markdown_target,30
+remaining_markdown_shortage,0
