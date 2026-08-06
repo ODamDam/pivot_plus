@@ -1,0 +1,39 @@
+{
+  "schema_version": "dataset_a_ai_first_pass_api_run_v1.0",
+  "stage": "response_validation",
+  "run_id": "dataset-a-ai-first-pass-smoke-1-v2",
+  "passed": false,
+  "request_count": 1,
+  "response_count": 1,
+  "valid_annotation_count": 0,
+  "dry_run_response_count": 0,
+  "error_count": 1,
+  "error_counts_by_scope": {
+    "response": 1
+  },
+  "errors": [
+    {
+      "scope": "response",
+      "candidate_id": "DA-RAW-000005",
+      "message": "API error: {'type': 'RateLimitError', 'message': \"Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}\"}"
+    }
+  ],
+  "artifacts": {
+    "requests": {
+      "path": "data/dataset_a/adjudication/api_requests/ai_first_pass_smoke_1_request_v1.jsonl",
+      "sha256": "f3f0ea0c299d43b3066c919a4d49226e8352067f9720537b62edd8b6d835f238"
+    },
+    "responses": {
+      "path": "data/dataset_a/adjudication/api_responses/ai_first_pass_smoke_1_raw_v2.jsonl",
+      "sha256": "249b7b300cbf07711b4093589bb0cb3348c8db28cb5781d8019cd41aac16eb37"
+    },
+    "schema": {
+      "path": "schemas/dataset_a_ai_first_pass_v1.schema.json",
+      "sha256": "4bbfddceeb217da1646c836797897f02d2d52229caa302caf278eaa9930cb0b4"
+    },
+    "parsed": {
+      "path": "data/dataset_a/adjudication/api_responses/ai_first_pass_smoke_1_parsed_v2.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

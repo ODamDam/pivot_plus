@@ -1,0 +1,36 @@
+{
+  "schema_version": "dataset_a_ai_first_pass_api_run_v1.0",
+  "stage": "request_generation",
+  "dry_run": true,
+  "api_called": false,
+  "record_count": 200,
+  "run_id": "dataset-a-ai-first-pass-smoke-200-v1",
+  "random_seed": 20260806,
+  "prompt_version": "dataset-a-ai-first-pass-v1.0",
+  "git_commit": "cd24477bc9fb67bd3281e61ebca3d53d3b1bbf61",
+  "configuration": {
+    "model": "gpt-5.6-terra",
+    "reasoning_effort": "medium",
+    "max_output_tokens": 2000,
+    "endpoint": "/v1/responses",
+    "structured_outputs_strict": true
+  },
+  "artifacts": {
+    "input": {
+      "path": "data/dataset_a/adjudication/ai_first_pass_smoke_200_v1.jsonl",
+      "sha256": "8199d9ac0b9273b44c7e2dec8bf3c5d631ccdd595273cd86a496b34eb4663306"
+    },
+    "prompt": {
+      "path": "docs/dataset_a/annotation/dataset_a_ai_first_pass_prompt_v1.md",
+      "sha256": "91275fb3bae944dbd96c2b04790d1696d4781e20a13703dd6446a7e51f27392c"
+    },
+    "schema": {
+      "path": "schemas/dataset_a_ai_first_pass_v1.schema.json",
+      "sha256": "4bbfddceeb217da1646c836797897f02d2d52229caa302caf278eaa9930cb0b4"
+    },
+    "requests": {
+      "path": "data/dataset_a/adjudication/api_requests/ai_first_pass_smoke_200_requests_v1.jsonl",
+      "sha256": "963efa06e72b323bde85790117e3b3546615e8c6cd0d60ec91c63625d81136d8"
+    }
+  }
+}

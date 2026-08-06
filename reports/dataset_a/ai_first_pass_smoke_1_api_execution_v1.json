@@ -1,0 +1,15 @@
+{
+  "run_id": "dataset-a-ai-first-pass-smoke-1-v1",
+  "mode": "execute",
+  "api_called": true,
+  "record_count": 1,
+  "written_this_invocation": 1,
+  "requests": {
+    "path": "data/dataset_a/adjudication/api_requests/ai_first_pass_smoke_1_request_v1.jsonl",
+    "sha256": "4cec3c7f0d0c717d72f1b072b2c3a5a1ebaa059c0372f655dc276e238daf6fd2"
+  },
+  "responses": {
+    "path": "data/dataset_a/adjudication/api_responses/ai_first_pass_smoke_1_raw_v1.jsonl",
+    "sha256": "d5f65aec05319c34cfe8e7b529b50aff09716b99f94a8110c0737383eaaef6f7"
+  }
+}

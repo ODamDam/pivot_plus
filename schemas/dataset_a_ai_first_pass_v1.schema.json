@@ -19,7 +19,6 @@
     "context_dependent": {"type": "boolean"},
     "attack_techniques": {
       "type": "array",
-      "uniqueItems": true,
       "items": {
         "type": "string",
         "enum": ["instruction_override", "escape_or_delimiter_breakout", "fake_completion", "combined_attack", "role_or_authority_impersonation", "system_prompt_extraction", "task_redirection", "designated_output", "format_or_schema_manipulation", "secret_exfiltration", "tool_or_action_hijacking", "obfuscation_or_encoding", "other"]
@@ -27,7 +26,6 @@
     },
     "risk_patterns": {
       "type": "array",
-      "uniqueItems": true,
       "items": {
         "type": "string",
         "enum": ["designated_output_override", "task_override", "format_contract_violation", "unauthorized_sensitive_data_exfiltration", "system_prompt_disclosure", "unauthorized_tool_use", "external_side_effect", "integrity_violation", "availability_violation", "safety_control_bypass", "deception_or_impersonation", "none", "other"]
@@ -38,7 +36,7 @@
       "enum": ["none", "roleplay", "quotation", "translation", "security_discussion", "instruction_about_instructions", "legitimate_role_assignment", "formatting_request", "fictional_attack_text", "authorized_instruction_change", "other"]
     },
     "attacker_goal_summary": {"type": "string", "maxLength": 500},
-    "missing_information": {"type": "array", "uniqueItems": true, "items": {"type": "string", "maxLength": 200}},
+    "missing_information": {"type": "array", "items": {"type": "string", "maxLength": 200}},
     "evidence_spans": {"type": "array", "maxItems": 3, "items": {"type": "string", "maxLength": 500}},
     "brief_rationale": {"type": "string", "maxLength": 800},
     "confidence": {"type": "string", "enum": ["high", "medium", "low"]},
