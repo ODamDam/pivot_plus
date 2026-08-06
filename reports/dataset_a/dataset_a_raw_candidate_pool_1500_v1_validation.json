@@ -1,0 +1,84 @@
+{
+  "validation_version": "dataset_a_raw_candidate_pool_validation_v1.0",
+  "validated_at": "2026-08-06T10:43:47.188820+00:00",
+  "passed": true,
+  "checks": {
+    "minimum_pool_size_met": true,
+    "candidate_ids_unique": true,
+    "exact_text_hashes_unique": true,
+    "all_records_raw_candidates": true,
+    "no_case_gt_assigned": true,
+    "all_have_local_source_hash": true
+  },
+  "record_count": 1500,
+  "minimum_size": 1000,
+  "source_counts": {
+    "SRC-01": 32,
+    "SRC-03": 300,
+    "SRC-05": 200,
+    "SRC-06": 120,
+    "SRC-07": 380,
+    "SRC-09": 200,
+    "SRC-10": 56,
+    "SRC-11": 212
+  },
+  "eligibility_tier_counts": {
+    "conditional": 1032,
+    "immediate": 468
+  },
+  "revision_missing_count": 1500,
+  "final_dataset_ready": false,
+  "blocking_gates": [
+    "immutable source revisions are not recorded in the preserved local exports",
+    "record-level license and provenance review is incomplete",
+    "independent PI and maliciousness adjudication has not run",
+    "scenario binding has not run"
+  ],
+  "input_files": [
+    {
+      "path": "data/archive/pre_monorepo_data_pipeline_20260730/review/01_seed_review/benign/manual_review_seed_malicious_schema_v1.csv",
+      "sha256": "15215c5ba5fe887345501f5567fadd6d88bdcfa2293189c222f336ef10f635ac"
+    },
+    {
+      "path": "data/archive/pre_monorepo_data_pipeline_20260730/review/01_seed_review/context_eval/manual_review_context_eval_schema_v1.csv",
+      "sha256": "59c7e0e66b8d83a078312abab9455cdbf22e5e426c4fe1d98a333018d1c6704a"
+    },
+    {
+      "path": "data/archive/pre_monorepo_data_pipeline_20260730/review/01_seed_review/bypass/manual_review_bypass_candidate_schema_v1.csv",
+      "sha256": "7c39287ebca0d4c553353b727914accee93df2d99284417c7a84e4d90cdb14b3"
+    },
+    {
+      "path": "data/archive/pre_monorepo_data_pipeline_20260730/review/01_seed_review/hard_negative/manual_review_hard_negative_schema_v1.csv",
+      "sha256": "dc790e170bf31ff35c5b9b31ec10265ab6fe1fc6ac0dec41108434663d04b9d8"
+    },
+    {
+      "path": "data/archive/pre_monorepo_data_pipeline_20260730/review/01_seed_review/benign/manual_review_benign_schema_v1.csv",
+      "sha256": "d196a452c20920e78b4452b8957c779126c97902af549dea04cedf070c919470"
+    },
+    {
+      "path": "data/archive/pre_monorepo_data_pipeline_20260730/review/04_structure_intact/structure_intact_candidates_v1/structure_intact_candidates_all_v1.csv",
+      "sha256": "7b96e7ff6f87db52bc71a81d624edfa74fc26bf84af79483bd4866c4a4491144"
+    },
+    {
+      "path": "data/archive/pre_monorepo_data_pipeline_20260730/review/04_structure_intact/external_structure_candidates/src10_scout450_v1/src10_scout450_structure_candidates_all_v1.csv",
+      "sha256": "cc6be607e94ad39da2b551abb37bd6557842fbb765ecc16d00b0f0fcb247d9d4"
+    },
+    {
+      "path": "data/archive/pre_monorepo_data_pipeline_20260730/review/04_structure_intact/external_structure_candidates/src11_bipia_v1/src11_bipia_code_candidates_all_v1.csv",
+      "sha256": "ef577fd2206036ccf53223fbba17b6924808cb15469f4b67a9f1f422bcf9ad12"
+    }
+  ],
+  "source_quotas": {
+    "SRC-01": 32,
+    "SRC-07": 380,
+    "SRC-10": 56,
+    "SRC-03": 300,
+    "SRC-05": 200,
+    "SRC-06": 120,
+    "SRC-09": 200,
+    "SRC-11": 212
+  },
+  "quota_shortfalls": {},
+  "output_file": "data/dataset_a/candidate_pool/dataset_a_raw_candidate_pool_1500_v1.jsonl",
+  "output_sha256": "7c4af3101be539e639696d206a39dd0a13d04234da12cd886a0cd466ce1a777e"
+}
