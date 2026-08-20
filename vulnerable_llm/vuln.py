@@ -1,3 +1,9 @@
+"""Legacy reproduction-only weakening helpers.
+
+These functions preserve historical `/generate` and `/chat-generate` behavior.
+They are not permitted in current canonical experiments or the
+`/canonical-generate` execution path.
+"""
 from __future__ import annotations
 
 import re

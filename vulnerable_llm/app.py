@@ -2,27 +2,52 @@ from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 import hashlib
 import json
+from pathlib import Path
+import subprocess
 import time
 import uuid
 
 from fastapi import FastAPI, HTTPException
 import httpx
 
-from schemas import (
-    ChatGenerateRequest,
-    ChatGenerateResponse,
-    GenerateRequest,
-    GenerateResponse,
-)
-from vuln import (
-    apply_generation_profile,
-    build_vulnerable_messages,
-    is_high_risk,
-)
-
-from config import settings
-from client import OllamaClient
-from logging_utils import append_jsonl
+try:
+    from .canonical import (
+        CanonicalGenerationRequest,
+        build_canonical_messages,
+        provider_messages,
+    )
+    from .schemas import (
+        CanonicalGenerateResponse,
+        ChatGenerateRequest,
+        ChatGenerateResponse,
+        GenerateRequest,
+        GenerateResponse,
+    )
+    from .vuln import (
+        apply_generation_profile,
+        build_vulnerable_messages,
+        is_high_risk,
+    )
+    from .config import settings
+    from .client import OllamaClient, ProviderClient, ProviderExecutionError
+    from .logging_utils import append_jsonl
+except ImportError:  # Docker runs this module with /app as the import root.
+    from canonical import (
+        CanonicalGenerationRequest,
+        build_canonical_messages,
+        provider_messages,
+    )
+    from schemas import (
+        CanonicalGenerateResponse,
+        ChatGenerateRequest,
+        ChatGenerateResponse,
+        GenerateRequest,
+        GenerateResponse,
+    )
+    from vuln import apply_generation_profile, build_vulnerable_messages, is_high_risk
+    from config import settings
+    from client import OllamaClient, ProviderClient, ProviderExecutionError
+    from logging_utils import append_jsonl
 
 
 app = FastAPI(title="Vulnerable LLM API", version="0.2.0")
@@ -31,6 +56,7 @@ ollama = OllamaClient(
     base_url=settings.OLLAMA_BASE_URL,
     timeout_sec=settings.OLLAMA_TIMEOUT_SEC,
 )
+canonical_provider: ProviderClient = ollama
 
 
 def _utc_now() -> str:
@@ -44,6 +70,22 @@ def _sha256_text(value: str) -> str:
 def _json_hash(value: Any) -> str:
     encoded = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     return _sha256_text(encoded)
+
+
+def _git_commit() -> Optional[str]:
+    project_root = Path(__file__).resolve().parents[1]
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=project_root,
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+        return result.stdout.strip() or None
+    except (OSError, subprocess.SubprocessError):
+        return None
 
 
 def _context_to_text(context: Any) -> Optional[str]:
@@ -172,7 +214,196 @@ def health() -> Dict[str, Any]:
         "default_temperature": settings.DEFAULT_TEMPERATURE,
         "default_max_tokens": settings.DEFAULT_MAX_TOKENS,
         "log_dir": settings.LOG_DIR,
+        "canonical_provider": settings.CANONICAL_PROVIDER,
     }
+
+
+@app.post(
+    "/canonical-generate",
+    response_model=CanonicalGenerateResponse,
+)
+async def canonical_generate(
+    req: CanonicalGenerationRequest,
+) -> CanonicalGenerateResponse:
+    """Execute the neutral canonical path without legacy prompt profiles."""
+    request_id = f"req-{uuid.uuid4()}"
+    received_at = _utc_now()
+    canonical_request = req.model_dump(mode="json")
+    rendered = build_canonical_messages(req)
+    rendered_record = rendered.model_dump(mode="json")["messages"]
+    messages = provider_messages(rendered)
+
+    generation_config = req.generation_config.model_dump(mode="json")
+    if generation_config["random_seed"] is None:
+        generation_config["random_seed"] = req.random_seed
+
+    base_record = {
+        "schema_version": "vulnerable_llm_canonical_log.v1",
+        "request_id": request_id,
+        "run_id": req.run_id,
+        "generation_id": req.generation_id,
+        "case_id": req.case_id,
+        "scenario_id": req.scenario_id,
+        "condition": req.condition,
+        "repetition_index": req.repetition_index,
+        "provider": req.provider,
+        "model": req.model,
+        "generation_config": generation_config,
+        "dataset_sha256": req.dataset_sha256,
+        "random_seed": generation_config["random_seed"],
+        "git_commit": _git_commit(),
+        "canonical_request": canonical_request,
+        "rendered_messages": rendered_record,
+        "rendered_messages_sha256": _json_hash(rendered_record),
+        "received_at": received_at,
+    }
+
+    if req.provider != settings.CANONICAL_PROVIDER:
+        error = {
+            "type": "ProviderConfigurationError",
+            "message": (
+                f"requested provider {req.provider!r} does not match configured "
+                f"canonical provider {settings.CANONICAL_PROVIDER!r}"
+            ),
+        }
+        append_jsonl(
+            settings.LOG_DIR,
+            "vulnerable_llm_canonical.jsonl",
+            {
+                **base_record,
+                "execution_status": "configuration_error",
+                "provider_request": None,
+                "raw_provider_response": None,
+                "normalized_response": None,
+                "error": error,
+                "completed_at": _utc_now(),
+            },
+        )
+        raise HTTPException(status_code=400, detail=error["message"])
+
+    try:
+        provider_result = await canonical_provider.generate(
+            model=req.model,
+            messages=messages,
+            generation_config=generation_config,
+        )
+        if (
+            not isinstance(provider_result.raw_request, dict)
+            or not isinstance(provider_result.raw_response, dict)
+            or not isinstance(provider_result.text, str)
+        ):
+            raise ProviderExecutionError(
+                "provider returned a malformed canonical result",
+                error_type="malformed_provider_response",
+                raw_request=(
+                    provider_result.raw_request
+                    if isinstance(provider_result.raw_request, dict)
+                    else None
+                ),
+                raw_response=provider_result.raw_response,
+            )
+        if not provider_result.text.strip():
+            raise ProviderExecutionError(
+                "provider returned empty response text",
+                error_type="empty_provider_text",
+                raw_request=provider_result.raw_request,
+                raw_response=provider_result.raw_response,
+            )
+        if provider_result.provider != req.provider:
+            raise ValueError(
+                "provider result identity does not match canonical request"
+            )
+        if provider_result.model != req.model:
+            raise ValueError("provider model identity does not match canonical request")
+    except Exception as exc:
+        provider_error = exc if isinstance(exc, ProviderExecutionError) else None
+        error = {
+            "type": type(exc).__name__,
+            "message": str(exc),
+            "provider_error_type": (
+                provider_error.error_type if provider_error is not None else None
+            ),
+        }
+        failure_status = (
+            "invalid_provider_response"
+            if provider_error is not None
+            and provider_error.error_type
+            in {"malformed_provider_response", "empty_provider_text"}
+            else "runtime_error"
+        )
+        append_jsonl(
+            settings.LOG_DIR,
+            "vulnerable_llm_canonical.jsonl",
+            {
+                **base_record,
+                "execution_status": failure_status,
+                "provider_request": (
+                    provider_error.raw_request if provider_error is not None else None
+                ),
+                "raw_provider_response": (
+                    provider_error.raw_response if provider_error is not None else None
+                ),
+                "normalized_response": None,
+                "error": error,
+                "completed_at": _utc_now(),
+            },
+        )
+        raise HTTPException(
+            status_code=502,
+            detail=f"Canonical provider request failed: {type(exc).__name__}: {exc}",
+        ) from exc
+
+    completed_at = _utc_now()
+    normalized_response = {
+        "text": provider_result.text,
+        "text_sha256": _sha256_text(provider_result.text),
+        "model_identity": provider_result.model_identity,
+        "model_version": provider_result.model_version,
+        "model_digest": provider_result.model_digest,
+        "generation_metrics": provider_result.generation_metrics,
+    }
+    record = {
+        **base_record,
+        "execution_status": "completed",
+        "provider_request": provider_result.raw_request,
+        "provider_request_sha256": _json_hash(provider_result.raw_request),
+        "raw_provider_response": provider_result.raw_response,
+        "raw_provider_response_sha256": _json_hash(provider_result.raw_response),
+        "normalized_response": normalized_response,
+        "error": provider_result.error,
+        "completed_at": completed_at,
+    }
+    append_jsonl(
+        settings.LOG_DIR,
+        "vulnerable_llm_canonical.jsonl",
+        record,
+    )
+
+    return CanonicalGenerateResponse(
+        request_id=request_id,
+        run_id=req.run_id,
+        generation_id=req.generation_id,
+        case_id=req.case_id,
+        scenario_id=req.scenario_id,
+        condition=req.condition,
+        repetition_index=req.repetition_index,
+        provider=provider_result.provider,
+        model=provider_result.model,
+        response=provider_result.text,
+        meta={
+            "generated_at": completed_at,
+            "model_identity": provider_result.model_identity,
+            "model_version": provider_result.model_version,
+            "model_digest": provider_result.model_digest,
+            "generation_metrics": provider_result.generation_metrics,
+            "rendered_messages_sha256": record["rendered_messages_sha256"],
+            "provider_request_sha256": record["provider_request_sha256"],
+            "raw_provider_response_sha256": record[
+                "raw_provider_response_sha256"
+            ],
+            "response_sha256": normalized_response["text_sha256"],
+        },
+    )
 
 
 @app.post("/generate", response_model=GenerateResponse)

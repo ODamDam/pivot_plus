@@ -5,7 +5,10 @@ from typing import Any
 
 import requests
 
+from vulnerable_llm.canonical import CanonicalGenerationRequest
+
 from src.generation.clients.base import (
+    CanonicalGenerationClient,
     ClientGenerationResult,
     GenerationHTTPError,
     GenerationResponseError,
@@ -14,6 +17,7 @@ from src.generation.models import GenerationInput
 
 
 class VulnerableLLMClient:
+    """Legacy `/chat-generate` client retained for historical reproduction."""
     def __init__(
         self,
         *,
@@ -222,3 +226,23 @@ class VulnerableLLMClient:
             meta=meta,
             raw_response=body,
         )
+
+
+class CanonicalVulnerableLLMClient(VulnerableLLMClient, CanonicalGenerationClient):
+    """Canonical client that accepts structured fields, never chat messages."""
+
+    def generate_canonical(
+        self,
+        request: CanonicalGenerationRequest,
+    ) -> ClientGenerationResult:
+        response_body = self._post_with_retry(
+            path="/canonical-generate",
+            payload=self._build_canonical_payload(request),
+        )
+        return self._parse_generation_response(response_body)
+
+    @staticmethod
+    def _build_canonical_payload(
+        request: CanonicalGenerationRequest,
+    ) -> dict[str, Any]:
+        return request.model_dump(mode="json")

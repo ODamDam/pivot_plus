@@ -168,3 +168,19 @@ class ChatGenerateResponse(BaseModel):
     generation_profile: GenerationProfile
     response: str
     meta: Dict[str, Any]
+
+
+class CanonicalGenerateResponse(BaseModel):
+    schema_version: str = "canonical_generate_response.v1"
+    request_id: str
+    run_id: str
+    generation_id: str
+    case_id: str
+    scenario_id: str
+    condition: Literal["control", "attack"]
+    repetition_index: int
+    execution_status: str = "completed"
+    provider: str
+    model: str
+    response: str
+    meta: Dict[str, Any]

@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from src.generation.models import GenerationInput
+from vulnerable_llm.canonical import CanonicalGenerationRequest
 
 
 @dataclass(frozen=True)
@@ -52,5 +53,16 @@ class GenerationClient(ABC):
         run_id: str | None = None,
         temperature: float | None = None,
         max_tokens: int | None = None,
+    ) -> ClientGenerationResult:
+        raise NotImplementedError
+
+
+class CanonicalGenerationClient(ABC):
+    """Separate interface for current experiments using canonical fields."""
+
+    @abstractmethod
+    def generate_canonical(
+        self,
+        request: CanonicalGenerationRequest,
     ) -> ClientGenerationResult:
         raise NotImplementedError
