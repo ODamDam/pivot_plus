@@ -1,0 +1,24 @@
+{
+  "checkpoint_schema_version": "target_llm_diagnostic_checkpoint.v1",
+  "completed_generation_keys": [
+    "TLD-10P-V1-001:attack:0",
+    "TLD-10P-V1-001:control:0",
+    "TLD-10P-V1-002:attack:0",
+    "TLD-10P-V1-002:control:0",
+    "TLD-10P-V1-003:attack:0",
+    "TLD-10P-V1-003:control:0",
+    "TLD-10P-V1-004:attack:0",
+    "TLD-10P-V1-004:control:0",
+    "TLD-10P-V1-005:attack:0",
+    "TLD-10P-V1-005:control:0",
+    "TLD-10P-V1-007:attack:0",
+    "TLD-10P-V1-007:control:0",
+    "TLD-10P-V1-008:attack:0",
+    "TLD-10P-V1-008:control:0",
+    "TLD-10P-V1-009:attack:0",
+    "TLD-10P-V1-009:control:0",
+    "TLD-10P-V1-010:attack:0",
+    "TLD-10P-V1-010:control:0"
+  ],
+  "updated_at": "2026-08-21T09:23:55.569204+00:00"
+}

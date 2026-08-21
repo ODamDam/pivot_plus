@@ -1,0 +1,8 @@
+{
+  "checkpoint_schema_version": "target_llm_diagnostic_checkpoint.v1",
+  "completed_generation_keys": [
+    "TLD-10P-V1-006:attack:0",
+    "TLD-10P-V1-006:control:0"
+  ],
+  "updated_at": "2026-08-21T08:56:42.035646+00:00"
+}

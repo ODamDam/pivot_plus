@@ -1,0 +1,57 @@
+{
+  "manifest_schema_version": "target_llm_diagnostic_manifest.v1",
+  "schema_versions": {
+    "input": "target_llm_diagnostic_input.v1",
+    "canonical_request": "canonical_generation_request.v1",
+    "execution_plan": "target_llm_diagnostic_execution_plan.v1",
+    "result": "target_llm_diagnostic_result.v1",
+    "failure": "target_llm_diagnostic_failure.v1",
+    "checkpoint": "target_llm_diagnostic_checkpoint.v1"
+  },
+  "runner_version": "target_llm_canonical_diagnostic_runner.v1",
+  "run_id": "target-llm-diag-remaining9-qwen25-live-v1",
+  "dry_run": false,
+  "git_commit": "5b368ab281c1977b9e7ce66c99caf833a33e2071",
+  "input_file": "C:\\Users\\swu\\Desktop\\pivot_plus\\pivot_plus\\experiments\\target_llm_diagnostic_v1\\inputs\\target_llm_diagnostic_remaining_9pair_v1_qwen2.5-7b.jsonl",
+  "input_file_sha256": "e5ebfd8c49ad8d8f667e86b1659a6928519371dc5d146675755cedc9cedc8196",
+  "selected_diagnostic_ids": [
+    "TLD-10P-V1-001",
+    "TLD-10P-V1-002",
+    "TLD-10P-V1-003",
+    "TLD-10P-V1-004",
+    "TLD-10P-V1-005",
+    "TLD-10P-V1-007",
+    "TLD-10P-V1-008",
+    "TLD-10P-V1-009",
+    "TLD-10P-V1-010"
+  ],
+  "provider": "ollama",
+  "model": "qwen2.5:7b",
+  "generation_config": {
+    "temperature": 0.0,
+    "max_tokens": 512,
+    "random_seed": 17,
+    "provider_options": {}
+  },
+  "seed": 17,
+  "repetition_count": 1,
+  "generation_count": 18,
+  "retry_policy": {
+    "max_attempts": 2,
+    "retry_delay_seconds": 0.0,
+    "retryable": [
+      "connection_failure",
+      "timeout",
+      "http_5xx"
+    ],
+    "non_retryable": [
+      "validation",
+      "configuration",
+      "http_4xx",
+      "provider_mismatch",
+      "malformed_input",
+      "malformed_response"
+    ]
+  },
+  "created_at": "2026-08-21T09:22:40.335460+00:00"
+}
