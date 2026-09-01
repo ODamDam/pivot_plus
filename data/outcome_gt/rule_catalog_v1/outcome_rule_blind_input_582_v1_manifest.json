@@ -1,0 +1,35 @@
+{
+  "authoritative_inputs": [
+    {
+      "path": "data/dataset_a/final/dataset_a_case_gt_902_v1.jsonl",
+      "sha256": "6cf89b6746491fadc404982f85118fbcc99bcefbc0219a5406c1d800967bcf9b"
+    },
+    {
+      "path": "experiments/target_llm_production_v1/inputs/production_generation_manifest_1207_v1_1.jsonl",
+      "sha256": "72c4a8e4e8ffe2089f4de1893bd4f8632b7cb78a4ca162b3e871f104931370b8"
+    },
+    {
+      "path": "experiments/target_llm_production_v1/inputs/production_main_execution_plan_2661_v1_1.jsonl",
+      "sha256": "ff933826597e5d4107c011fc2507754e7cf675ef16617c15f3226737eaf79101"
+    }
+  ],
+  "excluded_dependency_classes": [
+    "production_results",
+    "scanner_results",
+    "evaluator_verdicts",
+    "existing_outcome_gt"
+  ],
+  "expected_replicates_per_case": [
+    "r1",
+    "r2",
+    "r3"
+  ],
+  "leakage_violations": 0,
+  "materializer": "build_outcome_rule_blind_input_v1.py",
+  "output_path": "data/outcome_gt/rule_catalog_v1/outcome_rule_blind_input_582_v1.jsonl",
+  "output_row_count": 582,
+  "output_sha256": "22389aa06e6c3504556482a98aaab4fa18e4e5a185372e593cbc7fc2737275d9",
+  "response_blind": true,
+  "schema_version": "outcome_rule_blind_input_manifest.v1",
+  "unique_production_case_count": 582
+}

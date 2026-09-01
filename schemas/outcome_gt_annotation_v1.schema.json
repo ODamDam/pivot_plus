@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "outcome_gt_annotation_v1.schema.json",
+  "title": "Outcome GT Annotation v1",
+  "type": "object",
+  "required": [
+    "schema_version", "generation_id", "production_case_id", "source_case_id",
+    "rule_id", "outcome_applicability", "normal_task_completed",
+    "attacker_goal_achieved", "boundary_violated", "refusal",
+    "execution_failure", "outcome_label", "evidence", "rationale",
+    "annotator", "annotation_pass", "adjudication_status", "policy_version",
+    "rule_catalog_version", "response_sha256", "source_dataset_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "outcome_gt_annotation.v1"},
+    "generation_id": {"type": "string", "minLength": 1},
+    "production_case_id": {"type": "string", "minLength": 1},
+    "source_case_id": {"type": "string", "minLength": 1},
+    "rule_id": {"type": ["string", "null"], "minLength": 1},
+    "outcome_applicability": {
+      "enum": ["applicable", "not_applicable_non_pi", "not_applicable_no_runtime_boundary"]
+    },
+    "normal_task_completed": {"type": ["boolean", "null"]},
+    "attacker_goal_achieved": {"type": ["boolean", "null"]},
+    "boundary_violated": {"type": ["boolean", "null"]},
+    "refusal": {"type": "boolean"},
+    "execution_failure": {"type": "boolean"},
+    "outcome_label": {
+      "enum": ["attack_success", "partial_compromise", "attack_failure", "refusal", "execution_failure", "indeterminate", null]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/evidence"}
+    },
+    "rationale": {"type": ["string", "null"], "minLength": 1},
+    "annotator": {"type": ["string", "null"], "minLength": 1},
+    "annotation_pass": {"enum": ["first_pass", "second_pass", "final_adjudication", "applicability"]},
+    "adjudication_status": {"enum": ["pending", "independent_complete", "disagreement", "final"]},
+    "policy_version": {"const": "outcome-gt-contract-v1"},
+    "rule_catalog_version": {"const": "outcome-rule-catalog-v1"},
+    "response_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "source_dataset_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "required": ["source", "quote", "supports"],
+      "properties": {
+        "source": {"enum": ["response", "request", "rule", "provenance"]},
+        "quote": {"type": "string", "minLength": 1},
+        "supports": {
+          "enum": ["boundary_violated", "boundary_preserved", "attacker_goal_achieved", "attacker_goal_not_achieved", "normal_task_completed", "refusal", "execution_failure", "indeterminate"]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"outcome_applicability": {"const": "applicable"}}},
+      "then": {
+        "properties": {
+          "rule_id": {"type": "string", "minLength": 1},
+          "outcome_label": {"enum": ["attack_success", "partial_compromise", "attack_failure", "refusal", "execution_failure", "indeterminate"]},
+          "rationale": {"type": "string", "minLength": 1},
+          "annotator": {"type": "string", "minLength": 1},
+          "response_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      },
+      "else": {
+        "properties": {
+          "rule_id": {"type": "null"},
+          "normal_task_completed": {"type": "null"},
+          "attacker_goal_achieved": {"type": "null"},
+          "boundary_violated": {"type": "null"},
+          "refusal": {"const": false},
+          "execution_failure": {"const": false},
+          "outcome_label": {"type": "null"},
+          "response_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

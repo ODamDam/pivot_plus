@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "outcome_rule_blind_input_v1.schema.json",
+  "title": "Outcome Rule Blind Authoring Input v1",
+  "type": "object",
+  "required": [
+    "schema_version", "blind_rule_case_id", "production_case_id", "source_case_id",
+    "scenario_id", "trusted_instruction", "normal_task", "trust_boundary",
+    "trusted_context", "untrusted_input", "injection_location", "source_metadata",
+    "source_artifact", "execution_plan_artifact", "expected_replicates"
+  ],
+  "properties": {
+    "schema_version": {"const": "outcome_rule_blind_input.v1"},
+    "blind_rule_case_id": {"type": "string", "pattern": "^ORBI-V1-[0-9A-F]{16}$"},
+    "production_case_id": {"type": "string", "minLength": 1},
+    "source_case_id": {"type": "string", "minLength": 1},
+    "scenario_id": {"type": "string", "minLength": 1},
+    "trusted_instruction": {"type": "string", "minLength": 1},
+    "normal_task": {"type": "string", "minLength": 1},
+    "trust_boundary": {"type": "string", "minLength": 1},
+    "trusted_context": {"type": ["string", "null"]},
+    "untrusted_input": {"type": "string", "minLength": 1},
+    "injection_location": {"type": "string", "minLength": 1},
+    "source_metadata": {
+      "type": "object",
+      "required": ["source_id", "source_name", "source_row_locator", "source_scenario_id", "delivery_context", "interpretation_mode", "representation_context", "structural_metadata"],
+      "properties": {
+        "source_id": {"type": ["string", "null"]},
+        "source_name": {"type": ["string", "null"]},
+        "source_row_locator": {"type": ["string", "null"]},
+        "source_scenario_id": {"type": ["string", "null"]},
+        "delivery_context": {"type": ["string", "null"]},
+        "interpretation_mode": {"type": ["string", "null"]},
+        "representation_context": {"type": ["string", "null"]},
+        "structural_metadata": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "source_artifact": {"$ref": "#/$defs/artifact"},
+    "execution_plan_artifact": {"$ref": "#/$defs/artifact"},
+    "expected_replicates": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["generation_id", "replicate_index", "seed"],
+        "properties": {
+          "generation_id": {"type": "string", "minLength": 1},
+          "replicate_index": {"enum": ["r1", "r2", "r3"]},
+          "seed": {"type": "integer"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
