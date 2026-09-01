@@ -22,6 +22,8 @@ try:
         ChatGenerateResponse,
         GenerateRequest,
         GenerateResponse,
+        DirectGenerateRequest,
+        DirectGenerateResponse,
     )
     from .vuln import (
         apply_generation_profile,
@@ -43,6 +45,8 @@ except ImportError:  # Docker runs this module with /app as the import root.
         ChatGenerateResponse,
         GenerateRequest,
         GenerateResponse,
+        DirectGenerateRequest,
+        DirectGenerateResponse,
     )
     from vuln import apply_generation_profile, build_vulnerable_messages, is_high_risk
     from config import settings
@@ -577,7 +581,7 @@ async def chat_generate(
             detail=str(exc),
         ) from exc
 
-    # 재현성을 위해 temperature는 서버 설정값으로 고정한다.
+    # ?ы쁽?깆쓣 ?꾪빐 temperature???쒕쾭 ?ㅼ젙媛믪쑝濡?怨좎젙?쒕떎.
     requested_temperature = req.params.temperature
     temperature = settings.DEFAULT_TEMPERATURE
 
@@ -703,3 +707,203 @@ async def chat_generate(
             ),
         },
     )
+
+
+@app.post(
+    "/direct-generate",
+    response_model=DirectGenerateResponse,
+)
+async def direct_generate(
+    req: DirectGenerateRequest,
+) -> DirectGenerateResponse:
+    """Neutral direct generation using the canonical provider adapter."""
+    request_id = f"req-{uuid.uuid4()}"
+    received_at = _utc_now()
+
+    messages = [
+        {
+            "role": message.role,
+            "content": message.content,
+        }
+        for message in req.messages
+    ]
+
+    generation_config = req.generation_config.model_dump(mode="json")
+
+    base_record = {
+        "schema_version": "vulnerable_llm_direct_log.v1",
+        "request_id": request_id,
+        "run_id": req.run_id,
+        "generation_id": req.generation_id,
+        "case_id": req.case_id,
+        "repetition_index": req.repetition_index,
+        "provider": req.provider,
+        "model": req.model,
+        "generation_config": generation_config,
+        "dataset_sha256": req.dataset_sha256,
+        "model_visible_messages": messages,
+        "model_visible_messages_sha256": _json_hash(messages),
+        "received_at": received_at,
+    }
+
+    if req.provider != settings.CANONICAL_PROVIDER:
+        error = {
+            "type": "ProviderConfigurationError",
+            "message": (
+                f"requested provider {req.provider!r} does not match configured "
+                f"provider {settings.CANONICAL_PROVIDER!r}"
+            ),
+        }
+
+        append_jsonl(
+            settings.LOG_DIR,
+            "vulnerable_llm_direct.jsonl",
+            {
+                **base_record,
+                "execution_status": "configuration_error",
+                "provider_request": None,
+                "raw_provider_response": None,
+                "normalized_response": None,
+                "error": error,
+                "completed_at": _utc_now(),
+            },
+        )
+
+        raise HTTPException(status_code=400, detail=error["message"])
+
+    try:
+        provider_result = await canonical_provider.generate(
+            model=req.model,
+            messages=messages,
+            generation_config=generation_config,
+        )
+
+        if (
+            not isinstance(provider_result.raw_request, dict)
+            or not isinstance(provider_result.raw_response, dict)
+            or not isinstance(provider_result.text, str)
+        ):
+            raise ProviderExecutionError(
+                "provider returned a malformed direct result",
+                error_type="malformed_provider_response",
+                raw_request=(
+                    provider_result.raw_request
+                    if isinstance(provider_result.raw_request, dict)
+                    else None
+                ),
+                raw_response=provider_result.raw_response,
+            )
+
+        if not provider_result.text.strip():
+            raise ProviderExecutionError(
+                "provider returned empty response text",
+                error_type="empty_provider_text",
+                raw_request=provider_result.raw_request,
+                raw_response=provider_result.raw_response,
+            )
+
+        if provider_result.provider != req.provider:
+            raise ValueError(
+                "provider result identity does not match direct request"
+            )
+
+        if provider_result.model != req.model:
+            raise ValueError(
+                "provider model identity does not match direct request"
+            )
+
+    except Exception as exc:
+        provider_error = (
+            exc if isinstance(exc, ProviderExecutionError) else None
+        )
+
+        error = {
+            "type": type(exc).__name__,
+            "message": str(exc),
+            "provider_error_type": (
+                provider_error.error_type
+                if provider_error is not None
+                else None
+            ),
+        }
+
+        append_jsonl(
+            settings.LOG_DIR,
+            "vulnerable_llm_direct.jsonl",
+            {
+                **base_record,
+                "execution_status": "runtime_error",
+                "provider_request": (
+                    provider_error.raw_request
+                    if provider_error is not None
+                    else None
+                ),
+                "raw_provider_response": (
+                    provider_error.raw_response
+                    if provider_error is not None
+                    else None
+                ),
+                "normalized_response": None,
+                "error": error,
+                "completed_at": _utc_now(),
+            },
+        )
+
+        raise HTTPException(
+            status_code=502,
+            detail=(
+                "Direct provider request failed: "
+                f"{type(exc).__name__}: {exc}"
+            ),
+        ) from exc
+
+    meta = {
+        "generated_at": _utc_now(),
+        "model_identity": provider_result.model_identity,
+        "model_version": provider_result.model_version,
+        "model_digest": provider_result.model_digest,
+        "generation_metrics": provider_result.generation_metrics,
+        "provider_request_sha256": _json_hash(
+            provider_result.raw_request
+        ),
+        "raw_provider_response_sha256": _json_hash(
+            provider_result.raw_response
+        ),
+        "model_visible_messages_sha256": _json_hash(messages),
+        "response_sha256": _sha256_text(provider_result.text),
+    }
+
+    append_jsonl(
+        settings.LOG_DIR,
+        "vulnerable_llm_direct.jsonl",
+        {
+            **base_record,
+            "execution_status": "completed",
+            "provider_request": provider_result.raw_request,
+            "raw_provider_response": provider_result.raw_response,
+            "normalized_response": provider_result.text,
+            "provider_result": {
+                "provider": provider_result.provider,
+                "model": provider_result.model,
+                "model_identity": provider_result.model_identity,
+                "model_version": provider_result.model_version,
+                "model_digest": provider_result.model_digest,
+                "generation_metrics": provider_result.generation_metrics,
+            },
+            "error": None,
+            "completed_at": _utc_now(),
+        },
+    )
+
+    return DirectGenerateResponse(
+        request_id=request_id,
+        run_id=req.run_id,
+        generation_id=req.generation_id,
+        case_id=req.case_id,
+        repetition_index=req.repetition_index,
+        provider=req.provider,
+        model=req.model,
+        response=provider_result.text,
+        meta=meta,
+    )
+

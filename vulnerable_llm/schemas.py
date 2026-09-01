@@ -184,3 +184,118 @@ class CanonicalGenerateResponse(BaseModel):
     model: str
     response: str
     meta: Dict[str, Any]
+
+# ---------------------------------------------------------------------------
+# Neutral direct generation contract for non-PI supplemental production data.
+# This path must not apply any legacy vulnerability profile or canonical
+# untrusted-input rendering.
+# ---------------------------------------------------------------------------
+
+NEUTRAL_DIRECT_SYSTEM_PROMPT = (
+    "You are a general-purpose assistant. Respond to the user's request."
+)
+
+
+class DirectGenerationConfig(BaseModel):
+    temperature: float = 0.0
+    max_tokens: int = Field(default=512, ge=1)
+    random_seed: Optional[int] = None
+    provider_options: Dict[str, Any] = Field(default_factory=dict)
+
+    model_config = {
+        "extra": "forbid",
+    }
+
+    @field_validator("provider_options")
+    @classmethod
+    def reject_reserved_provider_options(
+        cls, value: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        reserved = {"temperature", "num_predict", "seed"} & set(value)
+        if reserved:
+            raise ValueError(
+                f"provider_options cannot override direct fields: {sorted(reserved)}"
+            )
+        return value
+
+
+class DirectMessageRequest(BaseModel):
+    role: Literal["system", "user"]
+    content: str = Field(..., min_length=1)
+
+    model_config = {
+        "extra": "forbid",
+    }
+
+
+class DirectGenerateRequest(BaseModel):
+    schema_version: Literal["direct_generation_request.v1"] = (
+        "direct_generation_request.v1"
+    )
+
+    run_id: str
+    generation_id: str
+    case_id: str
+    repetition_index: int = Field(default=0, ge=0)
+
+    provider: str
+    model: str
+
+    messages: List[DirectMessageRequest]
+    generation_config: DirectGenerationConfig = Field(
+        default_factory=DirectGenerationConfig
+    )
+
+    dataset_sha256: Optional[str] = None
+
+    model_config = {
+        "extra": "forbid",
+    }
+
+    @field_validator("run_id", "generation_id", "case_id", "provider", "model")
+    @classmethod
+    def validate_non_blank(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("identity fields must not be blank")
+        return value
+
+    @field_validator("messages")
+    @classmethod
+    def validate_neutral_direct_messages(
+        cls, value: List[DirectMessageRequest]
+    ) -> List[DirectMessageRequest]:
+        if len(value) != 2:
+            raise ValueError(
+                "neutral direct generation requires exactly two messages"
+            )
+
+        system_message, user_message = value
+
+        if system_message.role != "system":
+            raise ValueError("first direct message must have role=system")
+
+        if user_message.role != "user":
+            raise ValueError("second direct message must have role=user")
+
+        if system_message.content != NEUTRAL_DIRECT_SYSTEM_PROMPT:
+            raise ValueError(
+                "direct system prompt must match the frozen neutral system prompt"
+            )
+
+        return value
+
+
+class DirectGenerateResponse(BaseModel):
+    schema_version: str = "direct_generate_response.v1"
+
+    request_id: str
+    run_id: str
+    generation_id: str
+    case_id: str
+    repetition_index: int
+
+    execution_status: str = "completed"
+    provider: str
+    model: str
+    response: str
+    meta: Dict[str, Any]

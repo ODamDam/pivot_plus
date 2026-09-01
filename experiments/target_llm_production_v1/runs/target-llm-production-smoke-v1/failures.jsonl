@@ -1,0 +1,6 @@
+{"error_message": "404 Client Error: Not Found for url: http://localhost:11434/api/chat", "error_type": "HTTPError", "generation_id": "TPC-V1-EB000643B4375007C5C6::direct::r1", "mode": "direct"}
+{"error_message": "404 Client Error: Not Found for url: http://localhost:11434/api/chat", "error_type": "HTTPError", "generation_id": "TPC-V1-EB000643B4375007C5C6::direct::r2", "mode": "direct"}
+{"error_message": "404 Client Error: Not Found for url: http://localhost:11434/api/chat", "error_type": "HTTPError", "generation_id": "TPC-V1-EB000643B4375007C5C6::direct::r3", "mode": "direct"}
+{"error_message": "404 Client Error: Not Found for url: http://localhost:11434/api/chat", "error_type": "HTTPError", "generation_id": "TPC-V1-6AF1016097FB11B8B0ED::direct::r1", "mode": "direct"}
+{"error_message": "404 Client Error: Not Found for url: http://localhost:11434/api/chat", "error_type": "HTTPError", "generation_id": "TPC-V1-6AF1016097FB11B8B0ED::direct::r2", "mode": "direct"}
+{"error_message": "404 Client Error: Not Found for url: http://localhost:11434/api/chat", "error_type": "HTTPError", "generation_id": "TPC-V1-6AF1016097FB11B8B0ED::direct::r3", "mode": "direct"}

@@ -1,0 +1,6 @@
+{"attempt_number": 1, "endpoint": "/direct-generate", "generation_id": "TPC-V1-EB000643B4375007C5C6::direct::r1", "model": "qwen2.5:7b", "model_digest": null, "model_identity": "qwen2.5:7b", "status": "completed"}
+{"attempt_number": 1, "endpoint": "/direct-generate", "generation_id": "TPC-V1-EB000643B4375007C5C6::direct::r2", "model": "qwen2.5:7b", "model_digest": null, "model_identity": "qwen2.5:7b", "status": "completed"}
+{"attempt_number": 1, "endpoint": "/direct-generate", "generation_id": "TPC-V1-EB000643B4375007C5C6::direct::r3", "model": "qwen2.5:7b", "model_digest": null, "model_identity": "qwen2.5:7b", "status": "completed"}
+{"attempt_number": 1, "endpoint": "/direct-generate", "generation_id": "TPC-V1-6AF1016097FB11B8B0ED::direct::r1", "model": "qwen2.5:7b", "model_digest": null, "model_identity": "qwen2.5:7b", "status": "completed"}
+{"attempt_number": 1, "endpoint": "/direct-generate", "generation_id": "TPC-V1-6AF1016097FB11B8B0ED::direct::r2", "model": "qwen2.5:7b", "model_digest": null, "model_identity": "qwen2.5:7b", "status": "completed"}
+{"attempt_number": 1, "endpoint": "/direct-generate", "generation_id": "TPC-V1-6AF1016097FB11B8B0ED::direct::r3", "model": "qwen2.5:7b", "model_digest": null, "model_identity": "qwen2.5:7b", "status": "completed"}

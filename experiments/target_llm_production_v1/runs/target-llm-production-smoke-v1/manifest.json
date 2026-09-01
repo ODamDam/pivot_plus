@@ -1,0 +1,10 @@
+{
+  "run_id": "target-llm-production-smoke-v1",
+  "selection_seed": "target-llm-production-smoke-v1",
+  "git_commit": "cd8b4a90d5e5fde0ea2e22081aab32bc6f4803fe",
+  "source_plan_sha256": "ff933826597e5d4107c011fc2507754e7cf675ef16617c15f3226737eaf79101",
+  "planned": 18,
+  "attack": 12,
+  "direct": 6,
+  "model": "qwen2.5:7b"
+}

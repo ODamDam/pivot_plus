@@ -1,0 +1,14 @@
+{
+  "attack_completed": 12,
+  "completed": 18,
+  "direct_completed": 6,
+  "failed": 0,
+  "historical_failed_attempts": 6,
+  "historical_failure_file": "failures.jsonl",
+  "new_recovery_failures": 0,
+  "planned": 18,
+  "recovered_direct_this_run": 6,
+  "recovery_audit_file": "direct_recovery_attempts.jsonl",
+  "run_dir": "experiments\\target_llm_production_v1\\runs\\target-llm-production-smoke-v1",
+  "run_id": "target-llm-production-smoke-v1"
+}
