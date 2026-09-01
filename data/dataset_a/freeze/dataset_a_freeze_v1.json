@@ -1,0 +1,60 @@
+{
+  "schema_version": "dataset_a_freeze.v1",
+  "status": "DATASET_A_FROZEN",
+  "frozen_dataset_path": "data/dataset_a/final/dataset_a_case_gt_902_v1.jsonl",
+  "row_count": 902,
+  "sha256": "6cf89b6746491fadc404982f85118fbcc99bcefbc0219a5406c1d800967bcf9b",
+  "source_distribution": {
+    "SRC-01": 32,
+    "SRC-09": 102,
+    "SRC-10": 56,
+    "SRC-11": 212,
+    "SRC-13": 250,
+    "SRC-14": 250
+  },
+  "final_case_gt_distribution": {
+    "non_pi_non_malicious": 9,
+    "pi_malicious": 842,
+    "pi_non_malicious": 51
+  },
+  "construction_version": "dataset_a_case_gt_final.v1",
+  "adjudication_version": "final_adjudication_49_v1",
+  "relevant_contract_versions": [
+    "pivot-dataset-a-spec-v1.0",
+    "GT Adjudication Contract v2"
+  ],
+  "timestamp": "2026-09-01T05:54:02.174179+00:00",
+  "git_commit": "fcb9a210612170aaa302dc15111358b004461f2e",
+  "parent_artifact_hashes": {
+    "eligibility_snapshot": "8a9a50ef89f029b46f5d93c12dd5a78c1bcf8f2e642e71db965a858417c4cd39",
+    "blind_input": "cf9b41256c81d8379369bf591719a81d5b2703713a2bc8c712a68a54ff024ad4",
+    "second_pass": "7c5789ac56535a22a28b5756444778aebd2712e4341671eb59ee01ca2bfd4558",
+    "disagreement_queue": "dc6214d24711f9b5da75343b4fef66cd6c2cd80136cea6191eb9e631655e61ab",
+    "final_adjudication": "74f8914707d600143ac9153a4fd28ea61e75d7648ee7c4bfd9a1bead5ebade7b",
+    "first_pass_batches": {
+      "batch_01": "6f5ff3a13748f98eaffeec5226a3a0cf4c34aae41624da5b07bd199cf9cd77e3",
+      "batch_02": "059828d355c06c46b5c8da7d9fa6af01717e17882c863175ef1954c51f1c404a",
+      "batch_03": "b5c1023f1beed7bb0e290b343c04ddc3fca82ed7e78ba12c25f5563422832e1a",
+      "batch_04": "aca2c66178d9670d24463b678f9658089dbb4f721cf112dddd5a4449edf65dbe",
+      "batch_05": "59f43520e500adca5ef0e4e622206839f8ae521a5841aead2ca962655c97bb10",
+      "batch_06": "d89701b14930a2a49c0efec4396e0ae0065f0c2963eaeea859f014d1d508e92e",
+      "batch_07": "a7d760329f0c47e055f3d4379c67b6786e153f8265fc21cb3069bb81e0322442",
+      "batch_08": "eba8d6d3c605f41065bc632eb4e8fb7c7e49b009a5f341fc7d36b3609dda09a9",
+      "batch_09": "7a6c53868eafce18e1f6a6cf74a1eb3e7bf991f087f391ed77aa51061e8f7225",
+      "batch_10": "0e4550762631cd9656e293450f856de99f8889a0c08631dfb30826d7e3167141",
+      "batch_11": "42bc635762871f4da9cfc1264d5f892ef2e6477db4b36634b055db8b5118d184",
+      "batch_12": "9a0428ec409fd3b4b033a67e4f93f4ebb56802b28dd147138d825cd35031228b",
+      "batch_13": "64f81b432b4ed45f5ca6a801d050693768ffbe12c2e6df8078bb43ee57b8aaec",
+      "batch_14": "4fd2fbee751ca8f171774f274d91fd310b1ad12b05389d2e70e1f0486551c1db",
+      "batch_15": "fbc3af27032e27ead435ff31cc8318cad4b2aac8cf4273af9607fa3b4c69e37a",
+      "batch_16": "905491d7afcbeac36e4168bbafebfae8aa23f2f604e69cac8dc95f2ceb673108",
+      "batch_17": "55016509ec02ea4323b16a2b87202349654890810742d1534f40710997a6f93f",
+      "batch_18": "9ccf5f41c6a927bb60444f90196ac59f317dedbc57bac2cd0b94e9545ef8a1e1",
+      "batch_19": "84eef8fa2f0787f73898bef2a3be4f401cc81d219470a5f27596e7cee668ab35"
+    }
+  },
+  "run_id": "dataset-a-final-closure-v1",
+  "random_seed": "not_applicable_deterministic_merge",
+  "validation_path": "reports/dataset_a/final_closure_v1/dataset_a_case_gt_902_validation_v1.json",
+  "validation_status": "PASS"
+}

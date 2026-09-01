@@ -1,0 +1,16 @@
+{
+  "schema_version": "case_gt_disagreement_queue_validation_v1.1",
+  "artifact_status": "PENDING_FINAL_ADJUDICATION_NOT_FINAL_GT",
+  "queue_count": 49,
+  "unique_candidate_id_count": 49,
+  "empty_disagreement_fields": 0,
+  "missing_original_adjudication_input": 0,
+  "missing_source_or_scenario": 0,
+  "queue_sha256": "dc6214d24711f9b5da75343b4fef66cd6c2cd80136cea6191eb9e631655e61ab",
+  "source_artifacts": {
+    "second_pass_sha256": "7c5789ac56535a22a28b5756444778aebd2712e4341671eb59ee01ca2bfd4558",
+    "private_map_sha256": "99b09e9f237095d59a1de3916975c1ffcccad19cf8f90388c291314ef118e3f1",
+    "blind_input_sha256": "82fdb16b726d0b28020804cf534635ec1087b54aba27497635ea93af4e3b9b8c",
+    "eligibility_snapshot_sha256": "8a9a50ef89f029b46f5d93c12dd5a78c1bcf8f2e642e71db965a858417c4cd39"
+  }
+}

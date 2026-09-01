@@ -1,0 +1,11 @@
+{
+  "schema_version": "dataset_a_final_adjudication_support_manifest.v1",
+  "queue_count": 49,
+  "queue_sha256": "dc6214d24711f9b5da75343b4fef66cd6c2cd80136cea6191eb9e631655e61ab",
+  "review_path": "reports/dataset_a/final_adjudication_v1/DATASET_A_FINAL_ADJUDICATION_REVIEW_49_v1.md",
+  "review_sha256": "d7ee1f2cbbcf8cbfc353af5749350de5e6b07b952c1da40d1a7a8d389e345a7e",
+  "template_path": "data/dataset_a/adjudication/case_gt_v1/final_adjudication/final_adjudication_49_template_v1.jsonl",
+  "template_sha256": "d647a7b4ef562407256ce64929515aea66de267087a40a2799a6b5a7c224f985",
+  "contract_version": "GT Adjudication Contract v2",
+  "contains_final_decisions": false
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dataset_a_final_adjudication_decision_v1.schema.json",
+  "title": "Dataset A Final Adjudication Decision v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "candidate_id",
+    "final_pi_status",
+    "final_maliciousness",
+    "final_rationale",
+    "adjudicator",
+    "adjudicated_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "dataset_a_final_adjudication_decision.v1"},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "final_pi_status": {
+      "enum": ["clear_pi", "context_dependent_pi", "not_pi", "ambiguous", "out_of_scope", null]
+    },
+    "final_maliciousness": {
+      "enum": ["malicious", "non_malicious", "ambiguous", "not_applicable", null]
+    },
+    "final_rationale": {"type": ["string", "null"]},
+    "adjudicator": {"type": ["string", "null"]},
+    "adjudicated_at": {"type": ["string", "null"], "format": "date-time"},
+    "derived_class": {
+      "enum": ["pi_malicious", "pi_non_malicious", "non_pi_malicious", "non_pi_non_malicious", "boundary_ambiguous", "out_of_scope", null],
+      "description": "Machine-derived; human adjudicators leave this null or omit it."
+    }
+  },
+  "additionalProperties": false
+}

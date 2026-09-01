@@ -1,0 +1,259 @@
+{
+  "schema_version": "case_gt_second_pass_agreement_summary_v1",
+  "artifact_status": "NOT_FINAL_GT",
+  "second_pass_distribution": {
+    "pi_status": {
+      "not_pi": 45,
+      "clear_pi": 51,
+      "context_dependent_pi": 101
+    },
+    "maliciousness": {
+      "non_malicious": 52,
+      "malicious": 145
+    },
+    "derived_class": {
+      "non_pi_non_malicious": 45,
+      "pi_malicious": 145,
+      "pi_non_malicious": 7
+    },
+    "confidence": {
+      "medium": 127,
+      "high": 70
+    }
+  },
+  "overall": {
+    "count": 197,
+    "pi_status_agreement": {
+      "count": 153,
+      "percent": 77.665,
+      "kappa": 0.635951
+    },
+    "maliciousness_agreement": {
+      "count": 156,
+      "percent": 79.188,
+      "kappa": 0.316956
+    },
+    "derived_class_agreement": {
+      "count": 155,
+      "percent": 78.68,
+      "kappa": 0.326551
+    },
+    "full_primary_axes_agreement": {
+      "count": 148,
+      "percent": 75.127
+    },
+    "binary_pi_agreement": {
+      "eligible_count": 197,
+      "excluded_ambiguous_or_out_of_scope": 0,
+      "count": 160,
+      "percent": 81.218,
+      "kappa": 0.25018
+    }
+  },
+  "edge_119": {
+    "count": 119,
+    "pi_status_agreement": {
+      "count": 79,
+      "percent": 66.387,
+      "kappa": 0.49167
+    },
+    "maliciousness_agreement": {
+      "count": 81,
+      "percent": 68.067,
+      "kappa": 0.227273
+    },
+    "derived_class_agreement": {
+      "count": 80,
+      "percent": 67.227,
+      "kappa": 0.243397
+    },
+    "full_primary_axes_agreement": {
+      "count": 75,
+      "percent": 63.025
+    },
+    "binary_pi_agreement": {
+      "eligible_count": 119,
+      "excluded_ambiguous_or_out_of_scope": 0,
+      "count": 84,
+      "percent": 70.588,
+      "kappa": 0.22598
+    }
+  },
+  "qc_78": {
+    "count": 78,
+    "pi_status_agreement": {
+      "count": 74,
+      "percent": 94.872,
+      "kappa": 0.773913
+    },
+    "maliciousness_agreement": {
+      "count": 75,
+      "percent": 96.154,
+      "kappa": 0.648649
+    },
+    "derived_class_agreement": {
+      "count": 75,
+      "percent": 96.154,
+      "kappa": 0.651786
+    },
+    "full_primary_axes_agreement": {
+      "count": 73,
+      "percent": 93.59
+    },
+    "binary_pi_agreement": {
+      "eligible_count": 78,
+      "excluded_ambiguous_or_out_of_scope": 0,
+      "count": 76,
+      "percent": 97.436,
+      "kappa": 0.0
+    },
+    "first_pass_confidence_composition": {
+      "high": 78
+    }
+  },
+  "agreement_categories": {
+    "full_agreement": 148,
+    "both_axes_disagreement": 36,
+    "pi_status_disagreement": 8,
+    "maliciousness_disagreement": 5
+  },
+  "pi_status_transitions": {
+    "clear_pi -> not_pi": 31,
+    "clear_pi -> context_dependent_pi": 7,
+    "context_dependent_pi -> not_pi": 6
+  },
+  "maliciousness_transitions": {
+    "malicious -> non_malicious": 38,
+    "non_malicious -> malicious": 3
+  },
+  "edge_reason_metrics": {
+    "boundary_unclear": {
+      "count": 106,
+      "pi_status_agreement": {
+        "count": 68,
+        "percent": 64.151,
+        "kappa": 0.432596
+      },
+      "maliciousness_agreement": {
+        "count": 70,
+        "percent": 66.038,
+        "kappa": 0.105904
+      },
+      "derived_class_agreement": {
+        "count": 70,
+        "percent": 66.038,
+        "kappa": 0.129165
+      },
+      "full_primary_axes_agreement": {
+        "count": 65,
+        "percent": 61.321
+      },
+      "binary_pi_agreement": {
+        "eligible_count": 106,
+        "excluded_ambiguous_or_out_of_scope": 0,
+        "count": 73,
+        "percent": 68.868,
+        "kappa": 0.162757
+      }
+    },
+    "scenario_insufficient": {
+      "count": 91,
+      "pi_status_agreement": {
+        "count": 59,
+        "percent": 64.835,
+        "kappa": 0.422222
+      },
+      "maliciousness_agreement": {
+        "count": 61,
+        "percent": 67.033,
+        "kappa": -0.063084
+      },
+      "derived_class_agreement": {
+        "count": 61,
+        "percent": 67.033,
+        "kappa": -0.030578
+      },
+      "full_primary_axes_agreement": {
+        "count": 56,
+        "percent": 61.538
+      },
+      "binary_pi_agreement": {
+        "eligible_count": 91,
+        "excluded_ambiguous_or_out_of_scope": 0,
+        "count": 64,
+        "percent": 70.33,
+        "kappa": 0.0
+      }
+    },
+    "possible_pi_non_malicious": {
+      "count": 0
+    },
+    "objective_unclear": {
+      "count": 13,
+      "pi_status_agreement": {
+        "count": 11,
+        "percent": 84.615,
+        "kappa": 0.648649
+      },
+      "maliciousness_agreement": {
+        "count": 11,
+        "percent": 84.615,
+        "kappa": 0.697674
+      },
+      "derived_class_agreement": {
+        "count": 10,
+        "percent": 76.923,
+        "kappa": 0.645455
+      },
+      "full_primary_axes_agreement": {
+        "count": 10,
+        "percent": 76.923
+      },
+      "binary_pi_agreement": {
+        "eligible_count": 13,
+        "excluded_ambiguous_or_out_of_scope": 0,
+        "count": 11,
+        "percent": 84.615,
+        "kappa": 0.648649
+      }
+    },
+    "schema_issue": {
+      "count": 10,
+      "pi_status_agreement": {
+        "count": 4,
+        "percent": 40.0,
+        "kappa": 0.0
+      },
+      "maliciousness_agreement": {
+        "count": 4,
+        "percent": 40.0,
+        "kappa": 0.0
+      },
+      "derived_class_agreement": {
+        "count": 4,
+        "percent": 40.0,
+        "kappa": 0.0
+      },
+      "full_primary_axes_agreement": {
+        "count": 4,
+        "percent": 40.0
+      },
+      "binary_pi_agreement": {
+        "eligible_count": 10,
+        "excluded_ambiguous_or_out_of_scope": 0,
+        "count": 4,
+        "percent": 40.0,
+        "kappa": 0.0
+      }
+    }
+  },
+  "disagreement_record_count": 49,
+  "final_adjudication_queue_count": 53,
+  "agreement_manifest_count": 144,
+  "qc_systematic_bias_status": "NO_STRONG_SYSTEMATIC_BIAS_SIGNAL",
+  "policy_or_schema_revision_needed": false,
+  "notes": [
+    "Raw agreement should be interpreted alongside kappa because PI/malicious labels are highly imbalanced.",
+    "Agreement cases remain pending explicit final promotion; no final GT was assigned."
+  ]
+}

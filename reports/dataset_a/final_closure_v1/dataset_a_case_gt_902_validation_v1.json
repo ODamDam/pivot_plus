@@ -1,0 +1,29 @@
+{
+  "schema_version": "dataset_a_case_gt_final_validation.v1",
+  "rows": 902,
+  "unique_candidate_ids": 902,
+  "eligible_candidate_ids": 902,
+  "missing_ids": 0,
+  "extra_ids": 0,
+  "case_gt_required_fields_coverage": 902,
+  "enum_violations": 0,
+  "derived_class_inconsistencies": 0,
+  "provenance_coverage": 902,
+  "license_eligibility_coverage": 902,
+  "blocked_source_contamination": 0,
+  "unresolved_gt": 0,
+  "passed": true,
+  "source_distribution": {
+    "SRC-01": 32,
+    "SRC-09": 102,
+    "SRC-10": 56,
+    "SRC-11": 212,
+    "SRC-13": 250,
+    "SRC-14": 250
+  },
+  "final_case_gt_distribution": {
+    "non_pi_non_malicious": 9,
+    "pi_malicious": 842,
+    "pi_non_malicious": 51
+  }
+}
