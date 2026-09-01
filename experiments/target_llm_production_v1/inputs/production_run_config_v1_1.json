@@ -1,0 +1,27 @@
+{
+  "schema_version": "production_run_config.v1_1",
+  "execution_enabled": false,
+  "provider": "ollama",
+  "model": "qwen2.5:7b",
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "max_tokens": 512,
+  "replicate_seeds": {
+    "r1": 1729,
+    "r2": 2718,
+    "r3": 3141
+  },
+  "main_population": {
+    "attack": 1746,
+    "direct": 915,
+    "total": 2661
+  },
+  "control_policy": "validated_causal_control_subset",
+  "control_selection_seed": "production-control-subset-v1",
+  "currently_approved_controls": 0,
+  "technical_retry_policy": {
+    "max_retries": 1,
+    "semantic_retry_prohibited": true
+  },
+  "created_at": "2026-09-01T08:26:34.806325+00:00"
+}

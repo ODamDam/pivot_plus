@@ -1,0 +1,33 @@
+{
+  "schema_version": "production_materialization_audit.v1",
+  "source_case_count": 1207,
+  "unique_production_case_ids": 1207,
+  "source_distribution": {
+    "dataset_a": 902,
+    "non_pi_supplemental": 305
+  },
+  "execution_plan_rows": 4523,
+  "mode_distribution": {
+    "attack": 2706,
+    "control": 902,
+    "direct": 915
+  },
+  "unique_generation_ids": 4523,
+  "dataset_a_attack_materializable": 582,
+  "dataset_a_control_materializable": 0,
+  "supplemental_direct_materializable": 305,
+  "blocked_execution_rows": 1862,
+  "materialization_leakage_violations": 0,
+  "dataset_a_untrusted_input_count_violations": 0,
+  "dataset_a_source_or_gt_leakage_violations": 0,
+  "dataset_a_attack_objective_preexposure_violations": 0,
+  "supplemental_original_text_count_violations": 0,
+  "supplemental_wrapper_or_metadata_leakage_violations": 0,
+  "control_attack_scenario_consistency_violations": 0,
+  "control_attack_scenario_consistency_not_evaluable": 902,
+  "artificial_weakening_violations": 0,
+  "source_sha_binding": true,
+  "schema_and_count_errors": [],
+  "production_execution_blocked": true,
+  "status": "BLOCKED"
+}

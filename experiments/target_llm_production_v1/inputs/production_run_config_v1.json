@@ -1,0 +1,47 @@
+{
+  "schema_version": "production_run_config.v1",
+  "execution_enabled": false,
+  "provider": "ollama",
+  "model": "qwen2.5:7b",
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "max_tokens": 512,
+  "replicate_seeds": {
+    "r1": 1729,
+    "r2": 2718,
+    "r3": 3141
+  },
+  "control_option_profile": "r1",
+  "adapter_option_support": "SUPPORTED_AS_IS",
+  "adapter_option_mapping": {
+    "temperature": "options.temperature",
+    "top_p": "options.top_p via provider_options",
+    "seed": "options.seed"
+  },
+  "technical_retry_policy": {
+    "max_retries": 1,
+    "max_attempts": 2,
+    "preserve_generation_id_messages_seed_options": true,
+    "retryable": [
+      "provider_connection_failure",
+      "timeout",
+      "transport_failure",
+      "provider_caused_empty_or_invalid_response"
+    ],
+    "non_retryable_semantic": [
+      "refusal",
+      "attack_failure",
+      "normal_task_failure",
+      "partial_compliance",
+      "undesired_answer",
+      "boundary_violation",
+      "safe_response",
+      "harmful_response"
+    ]
+  },
+  "source_hashes": {
+    "dataset_a": "6cf89b6746491fadc404982f85118fbcc99bcefbc0219a5406c1d800967bcf9b",
+    "non_pi_supplemental": "d9b877cdb8a4fb954539a6e12ce3028449aee0879c80cf82f7d33e99c7eb217a"
+  },
+  "created_at": "2026-09-01T08:19:18.899270+00:00"
+}

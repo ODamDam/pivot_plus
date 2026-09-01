@@ -1,0 +1,28 @@
+{
+  "schema_version": "production_materialization_audit.v1_1",
+  "total_source_cases": 1207,
+  "source_distribution": {
+    "dataset_a": 902,
+    "non_pi_supplemental": 305
+  },
+  "generation_eligible_distribution": {
+    "dataset_a": 582,
+    "non_pi_supplemental": 305
+  },
+  "generation_ineligible_dataset_a": 320,
+  "main_execution_rows": 2661,
+  "main_mode_distribution": {
+    "attack": 1746,
+    "direct": 915
+  },
+  "unique_generation_ids": 2661,
+  "ineligible_standalone_generation_rows": 0,
+  "control_candidate_count": 60,
+  "approved_control_count": 0,
+  "control_execution_rows": 0,
+  "materialization_leakage_violations": 0,
+  "artificial_weakening_violations": 0,
+  "source_sha_integrity": true,
+  "validation_errors": [],
+  "status": "PRODUCTION_MAIN_READY_CONTROL_REVIEW_PENDING"
+}
