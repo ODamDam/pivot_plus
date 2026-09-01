@@ -1,0 +1,12 @@
+{
+  "schema_version": "supplemental_second_pass_validation.v1",
+  "input_count": 34,
+  "output_count": 34,
+  "unique_id_count": 34,
+  "missing_id_count": 0,
+  "extra_id_count": 0,
+  "schema_or_enum_violations": 0,
+  "derived_inconsistency_count": 0,
+  "errors": [],
+  "passed": true
+}

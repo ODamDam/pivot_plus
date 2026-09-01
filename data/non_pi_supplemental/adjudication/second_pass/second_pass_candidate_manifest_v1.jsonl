@@ -1,0 +1,34 @@
+{"selection_group": "edge_case", "selection_reasons": ["maliciousness_differs_from_provisional_direction", "confidence_not_high"], "supplemental_candidate_id": "NPS-V1-8D742F7FA33AE2D7"}
+{"selection_group": "edge_case", "selection_reasons": ["maliciousness_differs_from_provisional_direction", "confidence_not_high"], "supplemental_candidate_id": "NPS-V1-6ABDFC92DA0B4F56"}
+{"selection_group": "edge_case", "selection_reasons": ["maliciousness_differs_from_provisional_direction", "confidence_not_high"], "supplemental_candidate_id": "NPS-V1-7F225A1C7F06A3E4"}
+{"selection_group": "edge_case", "selection_reasons": ["maliciousness_differs_from_provisional_direction", "confidence_not_high"], "supplemental_candidate_id": "NPS-V1-21CBFF93ED7AAA5E"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-876A0E17022AF082"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-F162865B3D682F71"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-A8325BD2DD43EE1C"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-E78B669249E377F5"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-CC42A575B8B9FC52"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-A39020BB42F0FE0A"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-D75FBE4DE1D3A225"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-69F8FFBB3064DFCE"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-ADB993F5B02CB86C"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-37426C886BE1C0BC"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-6D4E6AE4615FE1CD"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-794562EF91E2CEDD"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-644073F8F9CEA828"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-1D406873FA06B3B7"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-ED64AB1642153F3A"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-6B52F17A7E811079"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-7A0441419896B766"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-A36AA27EE6869760"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-37208250510D12DD"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-C48BFC0412E1CB6D"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-87B47E2D0D180635"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-B9FA160282AEDBE3"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-0A2F4539F7BFB620"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-1332F7B1F7FCF5B1"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["xstest_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-25FB35F6E5EF5724"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["jbb_original_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-4858A93C1C1A8782"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["jbb_original_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-32D0BEDB582D1A58"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["jbb_original_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-84DC3367081A5744"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["jbb_original_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-DC1D928137B704D9"}
+{"selection_group": "deterministic_qc", "selection_reasons": ["jbb_original_high_confidence_qc"], "selection_seed": "supplemental-first-pass-qc-v1", "supplemental_candidate_id": "NPS-V1-3C2E2BECDAB36546"}

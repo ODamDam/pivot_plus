@@ -1,0 +1,37 @@
+{
+  "schema_version": "non_pi_supplemental_freeze.v1",
+  "status": "NON_PI_SUPPLEMENTAL_FROZEN",
+  "frozen_artifact_path": "data/non_pi_supplemental/final/non_pi_supplemental_case_gt_305_v1.jsonl",
+  "artifact_sha256": "d9b877cdb8a4fb954539a6e12ce3028449aee0879c80cf82f7d33e99c7eb217a",
+  "total_rows": 305,
+  "unique_ids": 305,
+  "pi_status_distribution": {
+    "not_pi": 305
+  },
+  "maliciousness_distribution": {
+    "malicious": 51,
+    "non_malicious": 254
+  },
+  "class_distribution": {
+    "non_pi_malicious": 51,
+    "non_pi_non_malicious": 254
+  },
+  "source_distribution": {
+    "NPS-SRC-JBB-ORIGINAL": 55,
+    "NPS-SRC-XSTEST": 250
+  },
+  "license_distribution": {
+    "CC-BY-4.0": 250,
+    "MIT": 55
+  },
+  "parent_artifact_hashes": {
+    "candidate_pool": "8123cc5f88cc043a1b58814307644369fd6f4f6a1ad7d794905f151afaf3f050",
+    "first_pass": "51191e9fbc982c60b5a606dc062ff65481aebcde548892c8de716ee12f71f822",
+    "second_pass": "df136f0a91568959d5b542f7542f836778ea5609cf272f9b1cdc4cfc628a658a",
+    "dataset_a_frozen": "6cf89b6746491fadc404982f85118fbcc99bcefbc0219a5406c1d800967bcf9b"
+  },
+  "creation_timestamp": "2026-09-01T08:05:38.367560+00:00",
+  "construction_version": "non_pi_supplemental_pool.v1",
+  "contract_version": "GT Adjudication Contract v2",
+  "git_parent_commit": "fa9c3df5ab39a8f855fa64d1a9ebf1d4c8434515"
+}

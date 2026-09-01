@@ -1,0 +1,22 @@
+{
+  "schema_version": "non_pi_supplemental_preflight_summary.v1",
+  "xstest": {
+    "total": 450,
+    "safe": 250,
+    "unsafe_excluded": 200,
+    "dataset_a_overlap": 0
+  },
+  "harmbench": {
+    "total": 400,
+    "approved": 0,
+    "blocked": 400,
+    "semantic_potential": 300,
+    "needs_pi_review": 0
+  },
+  "candidate_pool": {
+    "total": 250,
+    "benign": 250,
+    "malicious": 0
+  },
+  "status": "LICENSE_REVIEW_REQUIRED"
+}

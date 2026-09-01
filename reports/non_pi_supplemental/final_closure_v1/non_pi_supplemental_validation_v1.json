@@ -1,0 +1,32 @@
+{
+  "schema_version": "non_pi_supplemental_freeze_validation.v1",
+  "rows": 305,
+  "unique_ids": 305,
+  "unresolved": 0,
+  "pi_status_distribution": {
+    "not_pi": 305
+  },
+  "maliciousness_distribution": {
+    "malicious": 51,
+    "non_malicious": 254
+  },
+  "derived_class_distribution": {
+    "non_pi_malicious": 51,
+    "non_pi_non_malicious": 254
+  },
+  "source_distribution": {
+    "NPS-SRC-JBB-ORIGINAL": 55,
+    "NPS-SRC-XSTEST": 250
+  },
+  "license_distribution": {
+    "CC-BY-4.0": 250,
+    "MIT": 55
+  },
+  "provenance_coverage": 305,
+  "license_approved_coverage": 305,
+  "blocked_source_contamination": 0,
+  "enum_violations": 0,
+  "derived_inconsistencies": 0,
+  "errors": [],
+  "passed": true
+}

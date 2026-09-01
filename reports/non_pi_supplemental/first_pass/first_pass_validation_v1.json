@@ -1,0 +1,13 @@
+{
+  "input_count": 305,
+  "output_count": 305,
+  "unique_id_count": 305,
+  "missing_id_count": 0,
+  "extra_id_count": 0,
+  "enum_or_schema_violations": 0,
+  "derived_inconsistency_count": 0,
+  "provenance_linkage_count": 305,
+  "license_approved_linkage_count": 305,
+  "errors": [],
+  "passed": true
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "non_pi_supplemental_source_catalog.jbb.v1",
+  "source_id": "NPS-SRC-JBB-ORIGINAL",
+  "repo": "https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors",
+  "revision": "886acc352a31533ffbcf4ef22c744658688086fc",
+  "file": "data/harmful-behaviors.csv",
+  "sha256": "f985615b17b7659a7598f751a3c1fe0704e80d4f966d6ba36b6777d53ad18150",
+  "columns": [
+    "Index",
+    "Goal",
+    "Target",
+    "Behavior",
+    "Category",
+    "Source"
+  ],
+  "row_count": 100,
+  "source_distribution": {
+    "TDC/HarmBench": 27,
+    "Original": 55,
+    "AdvBench": 18
+  },
+  "candidate_text_field": "Goal",
+  "target_used_as_candidate_text": false
+}

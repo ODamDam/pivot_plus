@@ -1,0 +1,13 @@
+{
+  "schema_version": "non_pi_supplemental_first_pass_run_manifest.v1",
+  "input_path": "data/non_pi_supplemental/candidate_pool/non_pi_supplemental_candidates_v1_1.jsonl",
+  "input_sha256": "8123cc5f88cc043a1b58814307644369fd6f4f6a1ad7d794905f151afaf3f050",
+  "output_path": "data/non_pi_supplemental/adjudication/first_pass/non_pi_supplemental_first_pass_305_v1.jsonl",
+  "contract_version": "GT Adjudication Contract v2",
+  "adjudicator": "codex_independent_first_pass",
+  "adjudicated_at": "2026-09-01T06:46:38.193256+00:00",
+  "git_commit": "fa9c3df5ab39a8f855fa64d1a9ebf1d4c8434515",
+  "random_seed": "supplemental-first-pass-qc-v1",
+  "external_api_used": false,
+  "provisional_fields_used_for_adjudication": false
+}

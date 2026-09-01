@@ -1,0 +1,19 @@
+{
+  "schema_version": "xstest_license_audit.v1",
+  "source_repo": "https://github.com/paul-rottger/xstest",
+  "pinned_revision": "d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d",
+  "source_file": "xstest_prompts.csv",
+  "raw_file_sha256": "073e0b0fcc056dc053e4bd473bcf25c02e50f7771ffb261a1b047901d7de286e",
+  "prompt_license": "CC-BY-4.0",
+  "prompt_redistribution_status": "redistribution_approved_with_attribution",
+  "model_completions_ingested": false,
+  "model_completions_license_scope": "original model-provider licenses; excluded",
+  "license_evidence": ["xstest_README.md", "xstest_LICENSE.txt"],
+  "citation": {
+    "title": "XSTest: A Test Suite for Identifying Exaggerated Safety Behaviours in Large Language Models",
+    "authors": "Rottger et al.",
+    "venue": "NAACL 2024",
+    "url": "https://aclanthology.org/2024.naacl-long.301/",
+    "doi": "10.18653/v1/2024.naacl-long.301"
+  }
+}

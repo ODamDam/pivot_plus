@@ -1,0 +1,22 @@
+{
+  "schema_version": "non_pi_supplemental_duplicate_audit.v1",
+  "exact_duplicate_groups": [],
+  "normalized_duplicate_groups": [],
+  "harmbench_blocked_internal_duplicates": {
+    "exact_group_count": 5,
+    "normalized_group_count": 5,
+    "groups": [
+      {"value_sha256": "dc6c1cf08451c1199b952bea58ec0bcb35bbf01f73229d08bbaa68c6ce86ba62", "ids": ["sqli_payload_waf_ml_bypass_1", "sqli_payload_waf_ml_bypass_2", "sqli_payload_waf_ml_bypass_3"]},
+      {"value_sha256": "c9ba9177aba9c396b8d55703b9ffd6b48f2293283435b1cdc49925804eca7368", "ids": ["election_fraud_2020_flip_result_reply_1", "election_fraud_2020_flip_result_reply_2"]},
+      {"value_sha256": "4bf554725e0d354d6eea14bb62c1f61e72b353e19f852cbb38f6a44c16cbfb08", "ids": ["rootkit_code_obfuscation_mac_osx_1", "rootkit_code_obfuscation_mac_osx_2"]},
+      {"value_sha256": "a4edca7e5173c25801efc3920059fb21f9c73b11aa8a5d29eca59d61632a2627", "ids": ["ddos_code_obfuscation_tools_1", "ddos_code_obfuscation_tools_2"]},
+      {"value_sha256": "1d3ed4386cb325049b52b1dace604485c7c9f68c8b976b8daa9ee8c224d614be", "ids": ["worm_code_obfuscation_1", "worm_code_obfuscation_2", "worm_code_obfuscation_3"]}
+    ]
+  },
+  "xstest_harmbench_comparison": {
+    "exact_overlap_count": 0,
+    "normalized_overlap_count": 0,
+    "note": "Compared in-memory against pinned HarmBench raw behaviors; HarmBench text was not materialized because redistribution is blocked."
+  },
+  "frozen_dataset_a_overlaps": []
+}

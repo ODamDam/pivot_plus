@@ -1,0 +1,10 @@
+{
+  "schema_version": "jbb_semantic_intake.v1",
+  "original_rows": 55,
+  "candidates": 55,
+  "needs_pi_review": 0,
+  "semantic_exclusions": [],
+  "dataset_a_overlaps": [],
+  "xstest_overlaps": [],
+  "rule": "Deterministic prefilter only; no final Case GT assigned."
+}

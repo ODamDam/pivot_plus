@@ -1,0 +1,25 @@
+{
+  "schema_version": "jbb_license_audit.v1",
+  "dataset_license": "MIT",
+  "source_repo": "https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors",
+  "pinned_revision": "886acc352a31533ffbcf4ef22c744658688086fc",
+  "source_file": "data/harmful-behaviors.csv",
+  "raw_file_sha256": "f985615b17b7659a7598f751a3c1fe0704e80d4f966d6ba36b6777d53ad18150",
+  "license_file_sha256": "90646877cb6bda11eff59af1ea1bc09776dda552e1cf4685ed9dbac4753bb189",
+  "dataset_card_evidence": "jbb_README.md",
+  "license_evidence": "jbb_LICENSE.txt",
+  "source_decisions": {
+    "Original": "redistribution_approved_with_attribution",
+    "TDC/HarmBench": "excluded_upstream_provenance",
+    "AdvBench": "excluded_upstream_provenance"
+  },
+  "doi": null,
+  "doi_note": "No DOI stated in the pinned dataset card; paper identified by arXiv:2404.01318 and NeurIPS 2024 citation.",
+  "citation": {
+    "title": "JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models",
+    "authors": "Chao et al.",
+    "venue": "NeurIPS Datasets and Benchmarks Track",
+    "year": 2024,
+    "arxiv": "2404.01318"
+  }
+}

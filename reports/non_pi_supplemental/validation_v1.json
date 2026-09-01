@@ -1,0 +1,12 @@
+{
+  "schema_version": "non_pi_supplemental_validation.v1",
+  "candidate_count": 250,
+  "unique_id_count": 250,
+  "schema_violations": 0,
+  "provenance_coverage": 250,
+  "license_coverage": 250,
+  "exact_duplicate_groups": 0,
+  "normalized_duplicate_groups": 0,
+  "frozen_dataset_a_overlap_count": 0,
+  "passed": true
+}

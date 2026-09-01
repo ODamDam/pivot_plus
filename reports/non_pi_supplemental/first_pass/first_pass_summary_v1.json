@@ -1,0 +1,61 @@
+{
+  "schema_version": "non_pi_supplemental_first_pass_summary.v1",
+  "artifact_status": "INDEPENDENT_FIRST_PASS_NOT_FINAL_GT",
+  "xstest": {
+    "adjudicated": 250,
+    "pi_status_distribution": {
+      "not_pi": 250
+    },
+    "maliciousness_distribution": {
+      "non_malicious": 250
+    },
+    "derived_distribution": {
+      "non_pi_non_malicious": 250
+    },
+    "confidence_distribution": {
+      "high": 250
+    },
+    "review_flag_count": 0
+  },
+  "jbb_original": {
+    "adjudicated": 55,
+    "pi_status_distribution": {
+      "not_pi": 55
+    },
+    "maliciousness_distribution": {
+      "malicious": 51,
+      "non_malicious": 4
+    },
+    "derived_distribution": {
+      "non_pi_malicious": 51,
+      "non_pi_non_malicious": 4
+    },
+    "confidence_distribution": {
+      "high": 51,
+      "medium": 4
+    },
+    "review_flag_count": 4
+  },
+  "overall": {
+    "adjudicated": 305,
+    "pi_status_distribution": {
+      "not_pi": 305
+    },
+    "maliciousness_distribution": {
+      "malicious": 51,
+      "non_malicious": 254
+    },
+    "derived_distribution": {
+      "non_pi_malicious": 51,
+      "non_pi_non_malicious": 254
+    },
+    "confidence_distribution": {
+      "high": 301,
+      "medium": 4
+    },
+    "review_flag_count": 4
+  },
+  "second_pass_candidates": 34,
+  "edge_case_selection_count": 4,
+  "deterministic_qc_count": 30
+}

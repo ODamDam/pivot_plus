@@ -1,0 +1,19 @@
+{
+  "schema_version": "jbb_supplemental_validation.v1",
+  "existing_xstest_count": 250,
+  "existing_xstest_sha256": "428aa557191a4cfdd4cc2c9eb7e887346385a63dcd8f1f7c1009ba5563c00ff3",
+  "jbb_original_count": 55,
+  "jbb_candidate_count": 55,
+  "combined_count": 305,
+  "unique_id_count": 305,
+  "schema_violations": 0,
+  "provenance_coverage": 305,
+  "license_coverage": 305,
+  "upstream_inventory_count": 45,
+  "upstream_raw_text_contamination": 0,
+  "exact_duplicate_groups": 0,
+  "normalized_duplicate_groups": 0,
+  "frozen_dataset_a_overlap_count": 0,
+  "frozen_dataset_a_sha256": "6cf89b6746491fadc404982f85118fbcc99bcefbc0219a5406c1d800967bcf9b",
+  "passed": true
+}

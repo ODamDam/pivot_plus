@@ -1,0 +1,36 @@
+{
+  "schema_version": "non_pi_supplemental_source_catalog.v1",
+  "sources": [
+    {
+      "source_id": "NPS-SRC-XSTEST",
+      "repo": "https://github.com/paul-rottger/xstest",
+      "revision": "d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d",
+      "file": "xstest_prompts.csv",
+      "sha256": "073e0b0fcc056dc053e4bd473bcf25c02e50f7771ffb261a1b047901d7de286e",
+      "license": "CC-BY-4.0",
+      "redistribution_status": "redistribution_approved_with_attribution",
+      "prompt_rows": 450,
+      "safe_rows": 250,
+      "unsafe_rows_excluded": 200
+      ,"citation": {
+        "title": "XSTest: A Test Suite for Identifying Exaggerated Safety Behaviours in Large Language Models",
+        "authors": "Rottger et al.",
+        "venue": "NAACL 2024",
+        "url": "https://aclanthology.org/2024.naacl-long.301/",
+        "doi": "10.18653/v1/2024.naacl-long.301"
+      },
+      "attribution_requirements": ["identify creators", "retain CC-BY-4.0 notice", "link license", "indicate changes"]
+    },
+    {
+      "source_id": "NPS-SRC-HARMBENCH",
+      "repo": "https://github.com/centerforaisafety/HarmBench",
+      "revision": "8e1604d1171fe8a48d8febecd22f600e462bdcdd",
+      "file": "data/behavior_datasets/harmbench_behaviors_text_all.csv",
+      "sha256": "8d81accedd38eaaf8b760618622bb888417d1fd0c86eba65c427a16f1cbb4afc",
+      "repository_license": "MIT",
+      "redistribution_status": "blocked_pending_upstream_license",
+      "row_count": 400,
+      "reason": "No row-level or source-family provenance field maps behavior text to upstream copyright/license."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": "harmbench_license_audit.v1",
+  "repository_license": "MIT",
+  "raw_rows": 400,
+  "source_family_metadata_available": false,
+  "approved_rows": 0,
+  "blocked_rows": 400,
+  "semantic_non_copyright_potential": 300,
+  "needs_pi_review": 0,
+  "attack_generated_test_cases_ingested": 0,
+  "decision": "LICENSE_REVIEW_REQUIRED"
+}

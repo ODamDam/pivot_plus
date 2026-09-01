@@ -1,0 +1,21 @@
+{
+  "schema_version": "jbb_duplicate_audit.v1",
+  "jbb_original_internal": {
+    "exact_groups": [],
+    "normalized_groups": []
+  },
+  "jbb_vs_xstest": {
+    "excluded_overlaps": []
+  },
+  "jbb_vs_frozen_dataset_a": {
+    "excluded_overlaps": []
+  },
+  "jbb_vs_harmbench_blocked": {
+    "comparison_performed": false,
+    "reason": "HarmBench blocked inventory intentionally withholds raw behavior text."
+  },
+  "combined_pool": {
+    "exact_groups": [],
+    "normalized_groups": []
+  }
+}

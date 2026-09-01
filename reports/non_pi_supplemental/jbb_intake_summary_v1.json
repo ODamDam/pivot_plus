@@ -1,0 +1,18 @@
+{
+  "schema_version": "jbb_intake_summary.v1",
+  "source_distribution": {
+    "TDC/HarmBench": 27,
+    "Original": 55,
+    "AdvBench": 18
+  },
+  "original_candidates": 55,
+  "needs_pi_review": 0,
+  "semantic_exclusions": 0,
+  "dataset_a_duplicates": 0,
+  "pool": {
+    "total": 305,
+    "provisional_benign": 250,
+    "provisional_malicious": 55
+  },
+  "status": "JBB_INTAKE_READY"
+}

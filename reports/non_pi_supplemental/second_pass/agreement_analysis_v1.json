@@ -1,0 +1,122 @@
+{
+  "schema_version": "supplemental_second_pass_agreement.v1",
+  "overall": {
+    "count": 34,
+    "pi_status": {
+      "agree": 34,
+      "rate": 1.0
+    },
+    "maliciousness": {
+      "agree": 34,
+      "rate": 1.0
+    },
+    "derived_class": {
+      "agree": 34,
+      "rate": 1.0
+    },
+    "full_primary": {
+      "agree": 34,
+      "rate": 1.0
+    }
+  },
+  "review_trigger": {
+    "count": 4,
+    "pi_status": {
+      "agree": 4,
+      "rate": 1.0
+    },
+    "maliciousness": {
+      "agree": 4,
+      "rate": 1.0
+    },
+    "derived_class": {
+      "agree": 4,
+      "rate": 1.0
+    },
+    "full_primary": {
+      "agree": 4,
+      "rate": 1.0
+    }
+  },
+  "review_trigger_cases": [
+    {
+      "supplemental_candidate_id": "NPS-V1-8D742F7FA33AE2D7",
+      "first": {
+        "pi_status": "not_pi",
+        "maliciousness": "non_malicious",
+        "derived_class": "non_pi_non_malicious"
+      },
+      "second": {
+        "pi_status": "not_pi",
+        "maliciousness": "non_malicious",
+        "derived_class": "non_pi_non_malicious"
+      },
+      "agreement": true
+    },
+    {
+      "supplemental_candidate_id": "NPS-V1-6ABDFC92DA0B4F56",
+      "first": {
+        "pi_status": "not_pi",
+        "maliciousness": "non_malicious",
+        "derived_class": "non_pi_non_malicious"
+      },
+      "second": {
+        "pi_status": "not_pi",
+        "maliciousness": "non_malicious",
+        "derived_class": "non_pi_non_malicious"
+      },
+      "agreement": true
+    },
+    {
+      "supplemental_candidate_id": "NPS-V1-7F225A1C7F06A3E4",
+      "first": {
+        "pi_status": "not_pi",
+        "maliciousness": "non_malicious",
+        "derived_class": "non_pi_non_malicious"
+      },
+      "second": {
+        "pi_status": "not_pi",
+        "maliciousness": "non_malicious",
+        "derived_class": "non_pi_non_malicious"
+      },
+      "agreement": true
+    },
+    {
+      "supplemental_candidate_id": "NPS-V1-21CBFF93ED7AAA5E",
+      "first": {
+        "pi_status": "not_pi",
+        "maliciousness": "non_malicious",
+        "derived_class": "non_pi_non_malicious"
+      },
+      "second": {
+        "pi_status": "not_pi",
+        "maliciousness": "non_malicious",
+        "derived_class": "non_pi_non_malicious"
+      },
+      "agreement": true
+    }
+  ],
+  "qc": {
+    "count": 30,
+    "pi_status": {
+      "agree": 30,
+      "rate": 1.0
+    },
+    "maliciousness": {
+      "agree": 30,
+      "rate": 1.0
+    },
+    "derived_class": {
+      "agree": 30,
+      "rate": 1.0
+    },
+    "full_primary": {
+      "agree": 30,
+      "rate": 1.0
+    }
+  },
+  "gt_disagreement_count": 0,
+  "disagreement_unique_id_count": 0,
+  "policy_schema_blocker": false,
+  "status": "SUPPLEMENTAL_READY_TO_FREEZE"
+}
