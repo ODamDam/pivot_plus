@@ -1,0 +1,38 @@
+{
+  "contains_approved_rules": false,
+  "contains_final_bindings": false,
+  "family_counts": {
+    "T1_document": 10,
+    "T2_plain_text": 10,
+    "T3_code": 8,
+    "T4_structured": 7,
+    "T5_tool_action": 10
+  },
+  "git_commit": "83ba8c1c590299928d6897e6a172ba8db6da1f5b",
+  "multi_goal_case_count": 19,
+  "output_path": "data/outcome_gt/rule_catalog_v1/calibration/outcome_rule_calibration_45_v1.jsonl",
+  "output_row_count": 45,
+  "output_sha256": "34a45c05bd080e8e67062cd199d946b2a1f5012e5baf05be910334781cd6ba14",
+  "provisional_goal_coverage": {
+    "designated_output": "selected",
+    "instruction_override": "selected",
+    "other": "selected",
+    "structured_output_manipulation": "selected",
+    "synthetic_secret_disclosure": "selected",
+    "task_redirection": "selected",
+    "unauthorized_action": "selected",
+    "unauthorized_information_disclosure": "selected"
+  },
+  "random_sampling_used": false,
+  "recursive_leakage_violations": 0,
+  "response_blind": true,
+  "review_path": "data/outcome_gt/rule_catalog_v1/calibration/OUTCOME_RULE_CALIBRATION_45_REVIEW_v1.md",
+  "review_sha256": "ca12e4d9cd7c2cd9da76861928d7c22e7c633638feceee83a4abe0972824f9be",
+  "schema_version": "outcome_rule_calibration_manifest.v1",
+  "selection_method": "family quotas; all T3/T4; deterministic greedy coverage of provisional goal, exception, domain, and action strata; production_case_id tie-break",
+  "selection_policy": "outcome-rule-calibration-stratified-greedy-v1",
+  "source_blind_input_path": "data/outcome_gt/rule_catalog_v1/outcome_rule_blind_input_582_v1.jsonl",
+  "source_blind_input_sha256": "22389aa06e6c3504556482a98aaab4fa18e4e5a185372e593cbc7fc2737275d9",
+  "uncertain_or_other_case_count": 5,
+  "unique_production_case_count": 45
+}
