@@ -67,6 +67,8 @@ examples/llm01_mutated_prompts.json
 
 # Local Outcome GT response-bearing adjudication artifacts
 /data/outcome_gt/adjudication_v1/input/outcome_gt_adjudication_input_1746_v1.jsonl
+/data/outcome_gt/adjudication_v1/passes/*/*.jsonl
+/data/outcome_gt/adjudication_v1/disagreements/*.jsonl
 
 # Local single-file experiments
 llm_greybox_fuzzer_single.py
