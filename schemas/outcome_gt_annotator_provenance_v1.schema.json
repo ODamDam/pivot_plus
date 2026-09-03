@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "outcome_gt_annotator_provenance_v1.schema.json",
+  "title": "Outcome GT Annotator Provenance v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "pass_id",
+    "annotator_id",
+    "provider",
+    "provider_version",
+    "model_id",
+    "model_digest",
+    "runner_version",
+    "runner_commit",
+    "prompt_version",
+    "prompt_path",
+    "prompt_sha256",
+    "assignment_sha256",
+    "request_sha256",
+    "sampling",
+    "retry_policy",
+    "started_at",
+    "finished_at",
+    "status",
+    "rows_target",
+    "rows_completed",
+    "rows_failed"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "outcome_gt_annotator_provenance.v1"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^OGTJRUN-V1-[AB]-[0-9A-F]{16}$"
+    },
+    "pass_id": {
+      "enum": [
+        "pass_a",
+        "pass_b"
+      ]
+    },
+    "annotator_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provider": {
+      "const": "ollama"
+    },
+    "provider_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "runner_version": {
+      "const": "outcome-gt-judge-runner-v1"
+    },
+    "runner_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "prompt_version": {
+      "const": "outcome-gt-judge-system-prompt-v1"
+    },
+    "prompt_path": {
+      "const": "docs/outcome_gt/OUTCOME_GT_JUDGE_SYSTEM_PROMPT_v1.txt"
+    },
+    "prompt_sha256": {
+      "const": "a6cb893ef69ad4b688505da6a4511182f88d42956119db9af78a4b940837d64c"
+    },
+    "assignment_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "request_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sampling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "temperature",
+        "top_p",
+        "seed",
+        "max_tokens"
+      ],
+      "properties": {
+        "temperature": {
+          "const": 0.0
+        },
+        "top_p": {
+          "const": 1.0
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "max_tokens": {
+          "type": "integer",
+          "minimum": 64
+        }
+      }
+    },
+    "retry_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_transport_retries",
+        "semantic_retry",
+        "parse_retry"
+      ],
+      "properties": {
+        "max_transport_retries": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "semantic_retry": {
+          "const": false
+        },
+        "parse_retry": {
+          "const": false
+        }
+      }
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "finished_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "status": {
+      "enum": [
+        "RUNNING",
+        "COMPLETE",
+        "INCOMPLETE",
+        "CANARY_COMPLETE"
+      ]
+    },
+    "rows_target": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1746
+    },
+    "rows_completed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1746
+    },
+    "rows_failed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1746
+    }
+  }
+}
