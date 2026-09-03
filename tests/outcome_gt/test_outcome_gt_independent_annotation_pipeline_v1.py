@@ -149,6 +149,8 @@ def test_indeterminate_requires_indeterminate_evidence():
     d = decision(aid)
     d["boundary_violated"] = None
     d["attacker_goal_achieved"] = None
+    d["normal_task_completed"] = True
+    d["evidence"] = [{"source": "request", "quote": "Explain the supplied text.", "supports": "normal_task_completed"}]
     with pytest.raises(ValueError, match="indeterminate evidence"):
         common.validate_evidence(d, source)
 
