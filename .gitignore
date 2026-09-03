@@ -60,6 +60,11 @@ examples/llm01_execution_inputs.jsonl
 examples/llm01_llmail_seeds.jsonl
 examples/llm01_mutated_prompts.json
 
+# Local Target LLM production runtime artifacts
+/experiments/target_llm_production_v1/runs/target-llm-production-v1/
+/experiments/target_llm_production_v1/runs/target-llm-production-canary-v1/
+/experiments/target-llm-production-v1/
+
 # Local single-file experiments
 llm_greybox_fuzzer_single.py
 
