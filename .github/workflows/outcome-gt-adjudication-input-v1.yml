@@ -42,6 +42,17 @@ jobs:
           tests/outcome_gt/test_outcome_gt_schemas_v1.py
           -q -p no:cacheprovider
 
+      - name: Restore production-run plan byte form
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("experiments/target_llm_production_v1/inputs/production_main_execution_plan_2661_v1_1.jsonl")
+          data = path.read_bytes()
+          if b"\r\n" not in data:
+              data = data.replace(b"\n", b"\r\n")
+              path.write_bytes(data)
+          PY
+
       - name: Verify frozen static join inputs
         run: python scripts/outcome_gt/materialize_outcome_gt_adjudication_input_v1.py --static-preflight
 
