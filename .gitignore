@@ -69,6 +69,10 @@ examples/llm01_mutated_prompts.json
 /data/outcome_gt/adjudication_v1/input/outcome_gt_adjudication_input_1746_v1.jsonl
 /data/outcome_gt/adjudication_v1/passes/*/*.jsonl
 /data/outcome_gt/adjudication_v1/disagreements/*.jsonl
+/data/outcome_gt/adjudication_v1/judge_requests/*/judge_requests_1746_v1.jsonl
+/data/outcome_gt/adjudication_v1/judge_runs/*/*/raw_results.jsonl
+/data/outcome_gt/adjudication_v1/judge_runs/*/*/decisions_v1.jsonl
+/data/outcome_gt/adjudication_v1/judge_runs/*/*/annotations_v1.jsonl
 
 # Local single-file experiments
 llm_greybox_fuzzer_single.py
