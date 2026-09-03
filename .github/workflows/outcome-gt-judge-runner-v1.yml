@@ -1,0 +1,73 @@
+name: Outcome GT Judge Runner v1
+
+on:
+  push:
+    branches:
+      - feature/outcome-gt-adjudication-v1
+    paths:
+      - .github/workflows/outcome-gt-judge-runner-v1.yml
+      - docs/outcome_gt/OUTCOME_GT_JUDGE_SYSTEM_PROMPT_v1.txt
+      - schemas/outcome_gt_annotator_provenance_v1.schema.json
+      - schemas/outcome_gt_judge_request_v1.schema.json
+      - schemas/outcome_gt_judge_semantic_response_v1.schema.json
+      - schemas/outcome_gt_judge_raw_result_v1.schema.json
+      - scripts/outcome_gt/materialize_outcome_gt_judge_requests_v1.py
+      - scripts/outcome_gt/run_outcome_gt_judge_v1.py
+      - scripts/outcome_gt/validate_outcome_gt_judge_run_v1.py
+      - tests/outcome_gt/test_outcome_gt_judge_runner_v1.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  judge-runner-static-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install focused dependencies
+        run: python -m pip install --upgrade pip pytest jsonschema
+
+      - name: Run judge runner regression tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: >-
+          python -m pytest
+          tests/outcome_gt/test_outcome_gt_judge_runner_v1.py
+          tests/outcome_gt/test_outcome_gt_independent_annotation_pipeline_v1.py
+          -q -p no:cacheprovider
+
+      - name: Validate judge schemas and frozen prompt hash
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          import jsonschema
+          expected = "a6cb893ef69ad4b688505da6a4511182f88d42956119db9af78a4b940837d64c"
+          prompt = Path("docs/outcome_gt/OUTCOME_GT_JUDGE_SYSTEM_PROMPT_v1.txt")
+          actual = hashlib.sha256(prompt.read_bytes()).hexdigest()
+          assert actual == expected, (actual, expected)
+          for name in (
+              "outcome_gt_annotator_provenance_v1.schema.json",
+              "outcome_gt_judge_request_v1.schema.json",
+              "outcome_gt_judge_semantic_response_v1.schema.json",
+              "outcome_gt_judge_raw_result_v1.schema.json",
+          ):
+              schema = json.loads((Path("schemas") / name).read_text(encoding="utf-8"))
+              jsonschema.Draft202012Validator.check_schema(schema)
+              print("valid schema:", name)
+          print("frozen prompt sha256:", actual)
+          PY
+
+      - name: Confirm judge runtime artifacts remain external
+        run: |
+          test ! -d data/outcome_gt/adjudication_v1/judge_runs
+          echo "Response-bearing judge requests and runtime outputs are intentionally local-only."
