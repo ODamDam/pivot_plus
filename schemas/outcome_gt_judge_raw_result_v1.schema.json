@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "outcome_gt_judge_raw_result_v1.schema.json",
+  "title": "Outcome GT Judge Raw Result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "judge_request_id", "assignment_item_id", "pass_id", "status", "attempts", "completed_at", "raw_content", "raw_content_sha256", "semantic", "error"],
+  "properties": {
+    "schema_version": {"const": "outcome_gt_judge_raw_result.v1"},
+    "judge_request_id": {"type": "string", "pattern": "^OGTJR-V1-[AB]-[0-9A-F]{16}$"},
+    "assignment_item_id": {"type": "string", "pattern": "^OGTAS-V1-[AB]-[0-9A-F]{16}$"},
+    "pass_id": {"enum": ["pass_a", "pass_b"]},
+    "status": {"enum": ["success", "transport_error", "parse_error", "schema_error", "evidence_error"]},
+    "attempts": {"type": "integer", "minimum": 1, "maximum": 4},
+    "completed_at": {"type": "string", "format": "date-time"},
+    "raw_content": {"type": ["string", "null"]},
+    "raw_content_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "semantic": {"type": ["object", "null"]},
+    "error": {"type": ["string", "null"]}
+  }
+}
