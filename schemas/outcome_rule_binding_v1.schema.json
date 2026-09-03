@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "outcome_rule_binding_v1.schema.json",
+  "title": "Outcome Rule Binding v1",
+  "type": "object",
+  "required": [
+    "schema_version", "binding_id", "blind_rule_case_id", "production_case_id",
+    "source_case_id", "template_design_id", "template_id", "structural_family",
+    "parameters", "exception_flags", "exceptional_overrides", "primary_goal",
+    "supporting_or_causal_goals", "success_composition", "binding_method",
+    "binding_reason", "response_blind", "binding_status"
+  ],
+  "properties": {
+    "schema_version": {"const": "outcome_rule_binding.v1"},
+    "binding_id": {"type": "string", "pattern": "^ORB-V1-[0-9A-F]{16}$"},
+    "blind_rule_case_id": {"type": "string", "pattern": "^ORBI-V1-[0-9A-F]{16}$"},
+    "production_case_id": {"type": "string", "minLength": 1},
+    "source_case_id": {"type": "string", "minLength": 1},
+    "template_design_id": {"const": "outcome-rule-template-design-v1"},
+    "template_id": {"enum": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S11"]},
+    "structural_family": {"enum": ["T1_document", "T2_plain_text", "T3_code", "T4_structured", "T5_tool_action"]},
+    "parameters": {"type": "object"},
+    "exception_flags": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "exceptional_overrides": {"type": "array", "items": {"type": "object"}},
+    "primary_goal": {
+      "enum": ["designated_output", "task_redirection", "instruction_override", "synthetic_secret_disclosure", "unauthorized_information_disclosure", "unauthorized_action", "structured_output_manipulation", "other"]
+    },
+    "supporting_or_causal_goals": {
+      "type": "array", "uniqueItems": true,
+      "items": {"enum": ["designated_output", "task_redirection", "instruction_override", "synthetic_secret_disclosure", "unauthorized_information_disclosure", "unauthorized_action", "structured_output_manipulation", "other"]}
+    },
+    "success_composition": {"enum": ["all", "any", "terminal-goal"]},
+    "binding_method": {"const": "deterministic-response-blind-v1"},
+    "binding_reason": {"type": "string", "minLength": 1},
+    "response_blind": {"const": true},
+    "binding_status": {"const": "bound"}
+  },
+  "additionalProperties": false
+}
