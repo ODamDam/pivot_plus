@@ -1,0 +1,17 @@
+{
+  "case_gt_labels_included": false,
+  "lineage_hidden_from_judge_request": true,
+  "other_pass_decisions_included": false,
+  "pass_id": "pass_b",
+  "prompt_path": "docs/outcome_gt/OUTCOME_GT_JUDGE_SYSTEM_PROMPT_v1.txt",
+  "prompt_sha256": "a6cb893ef69ad4b688505da6a4511182f88d42956119db9af78a4b940837d64c",
+  "prompt_version": "outcome-gt-judge-system-prompt-v1",
+  "request_path": "data/outcome_gt/adjudication_v1/judge_requests/pass_b/judge_requests_1746_v1.jsonl",
+  "request_sha256": "2abc05b188cade6dc55740f77145febf3d54eb9a4ad5da0287a6a4ce29afc73f",
+  "rows": 1746,
+  "scanner_results_included": false,
+  "schema_version": "outcome_gt_judge_request_manifest.v1",
+  "source_assignment_path": "data/outcome_gt/adjudication_v1/passes/pass_b/assignment_1746_v1.jsonl",
+  "source_assignment_sha256": "69e827472589efebb4baa42c3ff3d897411aeae073a932a54095b491a0427e84",
+  "status": "READY_FOR_JUDGE_EXECUTION"
+}
