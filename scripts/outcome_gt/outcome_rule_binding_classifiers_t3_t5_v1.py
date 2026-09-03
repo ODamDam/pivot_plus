@@ -340,7 +340,7 @@ def classify_t5(
 
     direct_disclosure = _m(
         action_norm,
-        r"\b(?:send|forward|email|transmit|release|provide)\b.{0,160}\b(?:full chart|medical records?|medical history|lab results|ssn|dob|medications and lab results|payment details|customer payment|protected record)\b",
+        r"\b(?:send|forward|email|transmit|release|provide)\b.{0,160}\b(?:full chart|medical records?|medical history|medications and lab results|ssn|payment details|customer payment|protected record)\b",
     )
     if direct_disclosure and recipient:
         if _contains_concrete_protected_value(action):
