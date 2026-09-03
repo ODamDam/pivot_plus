@@ -1,0 +1,112 @@
+name: Outcome Rule Binding v1
+
+on:
+  push:
+    branches:
+      - feature/outcome-rule-binding-v1
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  outcome-rule-binding:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install focused test dependencies
+        run: python -m pip install --upgrade pip pytest jsonschema
+
+      - name: Run Outcome GT regression tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: >-
+          python -m pytest
+          tests/outcome_gt/test_outcome_rule_binding_pipeline_v1.py
+          tests/outcome_gt/test_outcome_gt_schemas_v1.py
+          tests/outcome_gt/test_outcome_rule_blind_input_v1.py
+          tests/outcome_gt/test_outcome_rule_calibration_v1.py
+          -q -p no:cacheprovider
+
+      - name: Prepare CI artifact directory
+        run: mkdir -p "$RUNNER_TEMP/outcome-rule-ci"
+
+      - name: Materialize 582 response-blind bindings
+        run: |
+          python scripts/outcome_gt/build_outcome_rule_bindings_v1.py \
+            --bindings "$RUNNER_TEMP/outcome-rule-ci/bindings.jsonl" \
+            --exceptions "$RUNNER_TEMP/outcome-rule-ci/exceptions.jsonl" \
+            --manifest "$RUNNER_TEMP/outcome-rule-ci/binding_manifest.json" \
+            | tee "$RUNNER_TEMP/outcome-rule-ci/binding_summary.json"
+
+      - name: Require empty exception queue
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import pathlib
+          import sys
+
+          root = pathlib.Path(os.environ["RUNNER_TEMP"]) / "outcome-rule-ci"
+          path = root / "exceptions.jsonl"
+          rows = [
+              json.loads(line)
+              for line in path.read_text(encoding="utf-8").splitlines()
+              if line.strip()
+          ]
+          report = {
+              "exception_count": len(rows),
+              "exceptions": [
+                  {
+                      "production_case_id": row["production_case_id"],
+                      "source_case_id": row["source_case_id"],
+                      "structural_family": row["structural_family"],
+                      "candidate_template_ids": row["candidate_template_ids"],
+                      "reason_code": row["reason_code"],
+                      "reason": row["reason"],
+                  }
+                  for row in rows
+              ],
+          }
+          (root / "exception_report.json").write_text(
+              json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          print(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True))
+          if rows:
+              sys.exit(2)
+          PY
+
+      - name: Expand 582 flat outcome_rule.v1 records
+        run: |
+          python scripts/outcome_gt/expand_outcome_rules_v1.py \
+            --bindings "$RUNNER_TEMP/outcome-rule-ci/bindings.jsonl" \
+            --exceptions "$RUNNER_TEMP/outcome-rule-ci/exceptions.jsonl" \
+            --output "$RUNNER_TEMP/outcome-rule-ci/outcome_rules.jsonl" \
+            --manifest "$RUNNER_TEMP/outcome-rule-ci/rule_manifest.json"
+
+      - name: Validate 582 of 582 catalog invariants
+        run: |
+          python scripts/outcome_gt/validate_outcome_rule_catalog_v1.py \
+            --bindings "$RUNNER_TEMP/outcome-rule-ci/bindings.jsonl" \
+            --exceptions "$RUNNER_TEMP/outcome-rule-ci/exceptions.jsonl" \
+            --rules "$RUNNER_TEMP/outcome-rule-ci/outcome_rules.jsonl" \
+            | tee "$RUNNER_TEMP/outcome-rule-ci/validation_report.json"
+
+      - name: Upload Outcome Rule CI artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: outcome-rule-binding-v1-${{ github.run_id }}
+          path: ${{ runner.temp }}/outcome-rule-ci
+          if-no-files-found: warn
+          retention-days: 7
