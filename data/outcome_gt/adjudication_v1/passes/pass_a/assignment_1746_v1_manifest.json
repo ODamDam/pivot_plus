@@ -1,0 +1,18 @@
+{
+  "assignment_path": "data/outcome_gt/adjudication_v1/passes/pass_a/assignment_1746_v1.jsonl",
+  "assignment_sha256": "0bae68837a0f2e9d197a774caf81066225b18864f567eeb32dd0c130384e5dc2",
+  "case_gt_labels_included": false,
+  "lineage_hidden_from_assignment": true,
+  "other_pass_decisions_included": false,
+  "pass_id": "pass_a",
+  "private_key_path": "data/outcome_gt/adjudication_v1/passes/pass_a/private_key_1746_v1.jsonl",
+  "private_key_sha256": "80ec98b9fb08bb9ef6b99c5e8a6fea5913c075e8823634006d65a87ef039d4f1",
+  "replicate_index_hidden_from_assignment": true,
+  "rows": 1746,
+  "rule_id_hidden_from_assignment": true,
+  "scanner_results_included": false,
+  "schema_version": "outcome_gt_annotation_assignment_manifest.v1",
+  "sibling_responses_included_per_item": false,
+  "source_adjudication_input_sha256": "bbc8c182d497d3fe0e5a0bdc771ad9ebea0f2cc874d0723ea8ea276f63767fb0",
+  "status": "READY_FOR_INDEPENDENT_ANNOTATION"
+}
