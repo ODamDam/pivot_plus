@@ -1,0 +1,17 @@
+{
+  "binding_path": "data/outcome_gt/rule_catalog_v1/bindings/outcome_rule_bindings_582_v1.jsonl",
+  "binding_sha256": "df1279ad8b27d66ee681bc22e1a22737c8418c803ee6aced5aa777d99af83499",
+  "output_path": "data/outcome_gt/rule_catalog_v1/final/outcome_rules_582_v1.jsonl",
+  "output_sha256": "c85f277f897d29b53445f7e292ae32babac277b564f37945a3dc99c5c90248a8",
+  "policy_version": "outcome-gt-contract-v1",
+  "response_blind_rule_authoring": true,
+  "rule_catalog_version": "outcome-rule-catalog-v1",
+  "rule_count": 582,
+  "rule_status": "approved",
+  "schema_version": "outcome_rule_catalog_materialization_manifest.v1",
+  "source_blind_input_path": "data/outcome_gt/rule_catalog_v1/outcome_rule_blind_input_582_v1.jsonl",
+  "source_blind_input_sha256": "22389aa06e6c3504556482a98aaab4fa18e4e5a185372e593cbc7fc2737275d9",
+  "template_design_id": "outcome-rule-template-design-v1",
+  "unique_production_case_count": 582,
+  "unique_rule_id_count": 582
+}

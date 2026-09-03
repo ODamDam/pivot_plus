@@ -1,0 +1,79 @@
+{
+  "bindings": {
+    "binding_count": 582,
+    "manifest_path": "data/outcome_gt/rule_catalog_v1/bindings/outcome_rule_bindings_582_v1_manifest.json",
+    "manifest_sha256": "c10e7f91ad24328c8f2e0ce99b458e958915a3b68b59ab072aa0e5875d7b8d57",
+    "path": "data/outcome_gt/rule_catalog_v1/bindings/outcome_rule_bindings_582_v1.jsonl",
+    "sha256": "df1279ad8b27d66ee681bc22e1a22737c8418c803ee6aced5aa777d99af83499"
+  },
+  "blind_source": {
+    "case_count": 582,
+    "path": "data/outcome_gt/rule_catalog_v1/outcome_rule_blind_input_582_v1.jsonl",
+    "sha256": "22389aa06e6c3504556482a98aaab4fa18e4e5a185372e593cbc7fc2737275d9"
+  },
+  "blindness_guarantees": {
+    "contains_scanner_results": false,
+    "contains_target_llm_responses": false,
+    "response_blind_rule_authoring": true
+  },
+  "closure_commit": "the Git commit containing this manifest and closure report",
+  "exceptions": {
+    "exception_count": 0,
+    "path": "data/outcome_gt/rule_catalog_v1/bindings/outcome_rule_binding_exceptions_v1.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "freeze_workflow_run_id": 33719063592,
+  "freeze_workflow_run_url": "https://github.com/ODamDam/pivot_plus/actions/runs/33719063592",
+  "immutability_policy": "Outcome Rule Catalog v1 is frozen. Any semantic reclassification, template change, binding change, or rule change requires a new version; v1 artifacts must not be edited in place.",
+  "materialization_source_commit": "27f1ed9a2680dfb30c0ec947e47fb6065cb280ed",
+  "preclosure_reference_artifact_sha256": "876b05f25af5cf709fac461f5d485ac8d20f6e12b6002528c383eca3b728592e",
+  "preclosure_reference_run_id": 33718422980,
+  "rule_catalog_version": "outcome-rule-catalog-v1",
+  "rules": {
+    "manifest_path": "data/outcome_gt/rule_catalog_v1/final/outcome_rules_582_v1_manifest.json",
+    "manifest_sha256": "df8302d017b8dc705fe85989b73c645e510e37ea826d1fc1a994f0c3b6452c3d",
+    "path": "data/outcome_gt/rule_catalog_v1/final/outcome_rules_582_v1.jsonl",
+    "rule_count": 582,
+    "rule_status": "approved",
+    "sha256": "c85f277f897d29b53445f7e292ae32babac277b564f37945a3dc99c5c90248a8"
+  },
+  "schema_version": "outcome_rule_catalog_freeze_manifest.v1",
+  "status": "FROZEN_APPROVED_CLOSED",
+  "template_design": {
+    "path": "docs/outcome_gt/OUTCOME_RULE_TEMPLATE_DESIGN_v1.md",
+    "sha256": "6c99eeb39e9c939791720da5100f43772964c643ad1985d6fa1dd2579ce0d8db",
+    "template_design_id": "outcome-rule-template-design-v1",
+    "template_freeze_commit": "eb64112d82a519135184ed9614e1f3adcfd23ce1"
+  },
+  "validation": {
+    "duplicate_binding_count": 0,
+    "duplicate_rule_count": 0,
+    "family_counts": {
+      "T1_document": 211,
+      "T2_plain_text": 106,
+      "T3_code": 8,
+      "T4_structured": 7,
+      "T5_tool_action": 250
+    },
+    "invalid_composition_count": 0,
+    "path": "data/outcome_gt/rule_catalog_v1/final/outcome_rule_catalog_v1_validation_report.json",
+    "provenance_mismatch_count": 0,
+    "response_blind": true,
+    "sha256": "d9deeee1d0fde46fccce2188a94dc378bce908556c712cbb5fc259d5e79c91af",
+    "status": "PASS",
+    "template_counts": {
+      "S1": 10,
+      "S10": 3,
+      "S11": 7,
+      "S2": 68,
+      "S3": 31,
+      "S4": 6,
+      "S5": 8,
+      "S6": 182,
+      "S7": 25,
+      "S8": 2,
+      "S9": 240
+    },
+    "unbound_count": 0
+  }
+}

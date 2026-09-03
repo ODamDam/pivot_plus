@@ -1,0 +1,38 @@
+{
+  "binding_count": 582,
+  "binding_sha256": "df1279ad8b27d66ee681bc22e1a22737c8418c803ee6aced5aa777d99af83499",
+  "blind_case_count": 582,
+  "blind_sha256": "22389aa06e6c3504556482a98aaab4fa18e4e5a185372e593cbc7fc2737275d9",
+  "duplicate_binding_count": 0,
+  "duplicate_rule_count": 0,
+  "exception_count": 0,
+  "exception_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "family_counts": {
+    "T1_document": 211,
+    "T2_plain_text": 106,
+    "T3_code": 8,
+    "T4_structured": 7,
+    "T5_tool_action": 250
+  },
+  "flat_rule_count": 582,
+  "invalid_composition_count": 0,
+  "provenance_mismatch_count": 0,
+  "response_blind": true,
+  "rule_sha256": "c85f277f897d29b53445f7e292ae32babac277b564f37945a3dc99c5c90248a8",
+  "status": "PASS",
+  "template_counts": {
+    "S1": 10,
+    "S10": 3,
+    "S11": 7,
+    "S2": 68,
+    "S3": 31,
+    "S4": 6,
+    "S5": 8,
+    "S6": 182,
+    "S7": 25,
+    "S8": 2,
+    "S9": 240
+  },
+  "unbound_count": 0,
+  "unique_production_case_count": 582
+}

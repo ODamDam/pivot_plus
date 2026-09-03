@@ -1,0 +1,49 @@
+{
+  "audit": {
+    "accounted_case_count": 582,
+    "bound_row_count": 582,
+    "exception_reason_counts": {},
+    "exception_row_count": 0,
+    "family_counts": {
+      "T1_document": 211,
+      "T2_plain_text": 106,
+      "T3_code": 8,
+      "T4_structured": 7,
+      "T5_tool_action": 250
+    },
+    "response_blind": true,
+    "source_row_count": 582,
+    "source_sha256": "22389aa06e6c3504556482a98aaab4fa18e4e5a185372e593cbc7fc2737275d9",
+    "template_counts": {
+      "S1": 10,
+      "S10": 3,
+      "S11": 7,
+      "S2": 68,
+      "S3": 31,
+      "S4": 6,
+      "S5": 8,
+      "S6": 182,
+      "S7": 25,
+      "S8": 2,
+      "S9": 240
+    },
+    "template_design_sha256": "6c99eeb39e9c939791720da5100f43772964c643ad1985d6fa1dd2579ce0d8db",
+    "template_freeze_commit": "eb64112d82a519135184ed9614e1f3adcfd23ce1",
+    "unique_accounted_case_count": 582
+  },
+  "binding_method": "deterministic-response-blind-v1",
+  "binding_path": "data/outcome_gt/rule_catalog_v1/bindings/outcome_rule_bindings_582_v1.jsonl",
+  "binding_sha256": "df1279ad8b27d66ee681bc22e1a22737c8418c803ee6aced5aa777d99af83499",
+  "contains_responses": false,
+  "contains_scanner_results": false,
+  "exception_path": "data/outcome_gt/rule_catalog_v1/bindings/outcome_rule_binding_exceptions_v1.jsonl",
+  "exception_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "response_blind": true,
+  "schema_version": "outcome_rule_binding_manifest.v1",
+  "source_path": "data/outcome_gt/rule_catalog_v1/outcome_rule_blind_input_582_v1.jsonl",
+  "source_sha256": "22389aa06e6c3504556482a98aaab4fa18e4e5a185372e593cbc7fc2737275d9",
+  "template_design_id": "outcome-rule-template-design-v1",
+  "template_design_path": "docs/outcome_gt/OUTCOME_RULE_TEMPLATE_DESIGN_v1.md",
+  "template_design_sha256": "6c99eeb39e9c939791720da5100f43772964c643ad1985d6fa1dd2579ce0d8db",
+  "template_freeze_commit": "eb64112d82a519135184ed9614e1f3adcfd23ce1"
+}
