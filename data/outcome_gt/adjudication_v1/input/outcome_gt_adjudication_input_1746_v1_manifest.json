@@ -1,0 +1,51 @@
+{
+  "inputs": {
+    "production_plan": {
+      "path": "experiments/target_llm_production_v1/inputs/production_main_execution_plan_2661_v1_1.jsonl",
+      "sha256": "ff933826597e5d4107c011fc2507754e7cf675ef16617c15f3226737eaf79101"
+    },
+    "production_results": {
+      "path": "experiments\\target_llm_production_v1\\runs\\target-llm-production-v1\\results.jsonl",
+      "sha256": "350345bc370265943f36291558686888682bcbcbff6549a2c8db4babad88fe75"
+    },
+    "rule_catalog": {
+      "path": "data/outcome_gt/rule_catalog_v1/final/outcome_rules_582_v1.jsonl",
+      "sha256": "c85f277f897d29b53445f7e292ae32babac277b564f37945a3dc99c5c90248a8"
+    },
+    "source_dataset_sha256": "6cf89b6746491fadc404982f85118fbcc99bcefbc0219a5406c1d800967bcf9b"
+  },
+  "join_invariants": {
+    "attack_plan_result_generation_id_set_equal": true,
+    "case_gt_labels_included": false,
+    "each_case_has_exact_r1_r2_r3": true,
+    "existing_outcome_gt_included": false,
+    "response_hashes_verified": true,
+    "rule_case_set_equals_attack_case_set": true,
+    "scanner_results_included": false,
+    "sibling_responses_included_per_item": false
+  },
+  "outcome_gt_contract": "outcome-gt-contract-v1",
+  "output_path": "data/outcome_gt/adjudication_v1/input/outcome_gt_adjudication_input_1746_v1.jsonl",
+  "output_sha256": "bbc8c182d497d3fe0e5a0bdc771ad9ebea0f2cc874d0723ea8ea276f63767fb0",
+  "population": {
+    "generations": 1746,
+    "production_cases": 582,
+    "replicate_ids": [
+      "r1",
+      "r2",
+      "r3"
+    ],
+    "replicates_per_case": 3
+  },
+  "rule_catalog_closure_commit": "09a57a03a1b61740f45be34e0720b74be75573ff",
+  "rule_catalog_version": "outcome-rule-catalog-v1",
+  "schema_version": "outcome_gt_adjudication_input_manifest.v1",
+  "static_join_audit": {
+    "attack_plan_rows": 1746,
+    "plan_rows": 2661,
+    "production_cases": 582,
+    "replicate_coverage": "r1_r2_r3_exact",
+    "rule_rows": 582
+  },
+  "status": "READY_FOR_OUTCOME_GT_ADJUDICATION"
+}
