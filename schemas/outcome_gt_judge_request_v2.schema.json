@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "outcome_gt_judge_request_v2.schema.json",
+  "title": "Outcome GT Judge Request v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "judge_request_id", "pass_id", "assignment_item_id", "prompt_version", "prompt_sha256", "assignment"],
+  "properties": {
+    "schema_version": {"const": "outcome_gt_judge_request.v2"},
+    "judge_request_id": {"type": "string", "pattern": "^OGTJR-V1-[AB]-[0-9A-F]{16}$"},
+    "pass_id": {"enum": ["pass_a", "pass_b"]},
+    "assignment_item_id": {"type": "string", "pattern": "^OGTAS-V1-[AB]-[0-9A-F]{16}$"},
+    "prompt_version": {"const": "outcome-gt-judge-system-prompt-v2"},
+    "prompt_sha256": {"const": "80a7a218bf34ccbf33a9aa936ac9f2926184be55acd0327fa3b93617e9435ad2"},
+    "assignment": {"type": "object"}
+  }
+}
