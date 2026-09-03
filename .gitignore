@@ -65,6 +65,9 @@ examples/llm01_mutated_prompts.json
 /experiments/target_llm_production_v1/runs/target-llm-production-canary-v1/
 /experiments/target-llm-production-v1/
 
+# Local Outcome GT response-bearing adjudication artifacts
+/data/outcome_gt/adjudication_v1/input/outcome_gt_adjudication_input_1746_v1.jsonl
+
 # Local single-file experiments
 llm_greybox_fuzzer_single.py
 

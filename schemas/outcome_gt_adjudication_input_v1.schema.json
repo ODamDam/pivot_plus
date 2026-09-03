@@ -1,0 +1,259 @@
+{
+  "$id": "https://pivot-plus.local/schemas/outcome_gt_adjudication_input_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adjudication_item_id": {
+      "pattern": "^OGTAI-V1-[0-9A-F]{16}$",
+      "type": "string"
+    },
+    "generation_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "outcome_applicability": {
+      "const": "applicable"
+    },
+    "production_case_id": {
+      "pattern": "^TPC-V1-[0-9A-F]{20}$",
+      "type": "string"
+    },
+    "provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "production_plan_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "production_plan_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "production_results_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "production_results_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "rule_catalog_closure_commit": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "rule_catalog_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "rule_catalog_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "source_dataset_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "production_plan_path",
+        "production_plan_sha256",
+        "production_results_path",
+        "production_results_sha256",
+        "rule_catalog_path",
+        "rule_catalog_sha256",
+        "rule_catalog_closure_commit",
+        "source_dataset_sha256"
+      ],
+      "type": "object"
+    },
+    "replicate_index": {
+      "enum": [
+        "r1",
+        "r2",
+        "r3"
+      ]
+    },
+    "request_context": {
+      "additionalProperties": false,
+      "properties": {
+        "injection_location": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "normal_task": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "trust_boundary": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "trusted_context": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "trusted_instruction": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "untrusted_input": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "trusted_instruction",
+        "normal_task",
+        "trust_boundary",
+        "trusted_context",
+        "untrusted_input",
+        "injection_location"
+      ],
+      "type": "object"
+    },
+    "response_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "response_text": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "rule": {
+      "additionalProperties": false,
+      "properties": {
+        "attacker_goal": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "attacker_goal_success_criterion": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "boundary_violation_criterion": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "edge_case_policy": {
+          "additionalProperties": false,
+          "properties": {
+            "extra_prefix_or_suffix": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "partial_following": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "quotation_only": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "refusal_with_disclosure": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "quotation_only",
+            "refusal_with_disclosure",
+            "partial_following",
+            "extra_prefix_or_suffix"
+          ],
+          "type": "object"
+        },
+        "goal_types": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "normal_task_completion_criterion": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "policy_version": {
+          "const": "outcome-gt-contract-v1"
+        },
+        "rule_catalog_version": {
+          "const": "outcome-rule-catalog-v1"
+        },
+        "rule_id": {
+          "pattern": "^ORULE-V1-[0-9A-F]{16}$",
+          "type": "string"
+        },
+        "rule_status": {
+          "const": "approved"
+        }
+      },
+      "required": [
+        "rule_id",
+        "rule_catalog_version",
+        "policy_version",
+        "goal_types",
+        "normal_task_completion_criterion",
+        "boundary_violation_criterion",
+        "attacker_goal",
+        "attacker_goal_success_criterion",
+        "edge_case_policy",
+        "rule_status"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "outcome_gt_adjudication_input.v1"
+    },
+    "source_case_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "view_guarantees": {
+      "additionalProperties": false,
+      "properties": {
+        "case_gt_labels_included": {
+          "const": false
+        },
+        "existing_outcome_gt_included": {
+          "const": false
+        },
+        "other_annotator_decisions_included": {
+          "const": false
+        },
+        "scanner_results_included": {
+          "const": false
+        },
+        "sibling_responses_included": {
+          "const": false
+        }
+      },
+      "required": [
+        "scanner_results_included",
+        "case_gt_labels_included",
+        "sibling_responses_included",
+        "existing_outcome_gt_included",
+        "other_annotator_decisions_included"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "adjudication_item_id",
+    "generation_id",
+    "production_case_id",
+    "source_case_id",
+    "replicate_index",
+    "outcome_applicability",
+    "response_text",
+    "response_sha256",
+    "request_context",
+    "rule",
+    "provenance",
+    "view_guarantees"
+  ],
+  "title": "Outcome GT Adjudication Input v1",
+  "type": "object"
+}

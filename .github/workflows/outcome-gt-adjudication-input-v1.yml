@@ -1,0 +1,51 @@
+name: Outcome GT Adjudication Input v1
+
+on:
+  push:
+    branches:
+      - feature/outcome-gt-adjudication-v1
+    paths:
+      - .github/workflows/outcome-gt-adjudication-input-v1.yml
+      - scripts/outcome_gt/materialize_outcome_gt_adjudication_input_v1.py
+      - schemas/outcome_gt_adjudication_input_v1.schema.json
+      - tests/outcome_gt/test_outcome_gt_adjudication_materialization_v1.py
+      - data/outcome_gt/rule_catalog_v1/final/outcome_rules_582_v1.jsonl
+      - data/outcome_gt/rule_catalog_v1/final/outcome_rule_catalog_v1_freeze_manifest.json
+      - experiments/target_llm_production_v1/inputs/production_main_execution_plan_2661_v1_1.jsonl
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  adjudication-input-static-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install focused dependencies
+        run: python -m pip install --upgrade pip pytest jsonschema
+
+      - name: Run focused regression tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: >-
+          python -m pytest
+          tests/outcome_gt/test_outcome_gt_adjudication_materialization_v1.py
+          tests/outcome_gt/test_outcome_gt_schemas_v1.py
+          -q -p no:cacheprovider
+
+      - name: Verify frozen static join inputs
+        run: python scripts/outcome_gt/materialize_outcome_gt_adjudication_input_v1.py --static-preflight
+
+      - name: Confirm raw production response remains external
+        run: |
+          test ! -f experiments/target_llm_production_v1/runs/target-llm-production-v1/results.jsonl
+          echo "Canonical response artifact is intentionally local-only; full 1,746-row materialization runs in the retained production working copy."
