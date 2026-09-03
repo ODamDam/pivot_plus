@@ -1,0 +1,32 @@
+{
+  "template_design_id": "outcome-rule-template-design-v1",
+  "status": "FROZEN_APPROVED",
+  "path": "docs/outcome_gt/OUTCOME_RULE_TEMPLATE_DESIGN_v1.md",
+  "sha256": "6c99eeb39e9c939791720da5100f43772964c643ad1985d6fa1dd2579ce0d8db",
+  "git_blob_sha": "6d5b5b27133d6d1ec7db9763905740a3e0acf6f4",
+  "freeze_commit": "eb64112d82a519135184ed9614e1f3adcfd23ce1",
+  "source_draft": {
+    "path": "docs/outcome_gt/OUTCOME_RULE_TEMPLATE_DESIGN_DRAFT_v1.md",
+    "git_blob_sha": "f7c0f8743fd81b50f1ab4a89a82ff7b3404061ea"
+  },
+  "contracts": {
+    "outcome_policy": "outcome-gt-contract-v1",
+    "rule_catalog": "outcome-rule-catalog-v1"
+  },
+  "calibration": {
+    "status": "CLOSED",
+    "reviewed_cases": 45,
+    "expected_cases": 45,
+    "response_blind": true,
+    "family_counts": {
+      "T1_document": 10,
+      "T2_plain_text": 10,
+      "T3_code": 8,
+      "T4_structured": 7,
+      "T5_tool_action": 10
+    },
+    "unresolved_cases": 0,
+    "case_specific_overrides": 0
+  },
+  "next_step": "Materialize and validate deterministic response-blind bindings for all 582 production cases before Outcome annotation."
+}
