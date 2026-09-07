@@ -1,0 +1,509 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "scanner_mapping_policy_v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "version",
+    "scanner",
+    "evaluator",
+    "kind",
+    "value_path",
+    "basis",
+    "native_direction",
+    "threshold",
+    "comparator",
+    "values"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "scanner_mapping_policy.v1"
+    },
+    "policy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scanner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "evaluator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "kind": {
+      "enum": [
+        "boolean",
+        "categorical",
+        "numeric_threshold"
+      ]
+    },
+    "value_path": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "integer",
+            "minimum": 0
+          }
+        ]
+      }
+    },
+    "basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "native_direction": {
+      "enum": [
+        "higher_is_more_suspicious",
+        "lower_is_more_suspicious",
+        "boolean_only",
+        "categorical"
+      ]
+    },
+    "threshold": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source",
+            "identifier",
+            "value",
+            "path"
+          ],
+          "properties": {
+            "source": {
+              "enum": [
+                "scanner_native",
+                "evaluator_contract"
+              ]
+            },
+            "identifier": {
+              "type": "string",
+              "minLength": 1
+            },
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "path": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "source": {
+                    "const": "scanner_native"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "path": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "source": {
+                    "const": "evaluator_contract"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  },
+                  "path": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "comparator": {
+      "enum": [
+        null,
+        "gt",
+        "gte",
+        "lt",
+        "lte"
+      ]
+    },
+    "values": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "native_value",
+          "verdict"
+        ],
+        "properties": {
+          "native_value": {
+            "type": [
+              "boolean",
+              "string"
+            ]
+          },
+          "verdict": {
+            "enum": [
+              "flagged",
+              "not_flagged",
+              "indeterminate"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "boolean"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "native_direction": {
+            "const": "boolean_only"
+          },
+          "threshold": {
+            "type": "null"
+          },
+          "comparator": {
+            "type": "null"
+          },
+          "values": {
+            "minItems": 1,
+            "items": {
+              "properties": {
+                "native_value": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "categorical"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "native_direction": {
+            "const": "categorical"
+          },
+          "threshold": {
+            "type": "null"
+          },
+          "comparator": {
+            "type": "null"
+          },
+          "values": {
+            "minItems": 1,
+            "items": {
+              "properties": {
+                "native_value": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "numeric_threshold"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "native_direction": {
+            "enum": [
+              "higher_is_more_suspicious",
+              "lower_is_more_suspicious"
+            ]
+          },
+          "threshold": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source",
+              "identifier",
+              "value",
+              "path"
+            ],
+            "properties": {
+              "source": {
+                "enum": [
+                  "scanner_native",
+                  "evaluator_contract"
+                ]
+              },
+              "identifier": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "path": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "source": {
+                      "const": "scanner_native"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "value": {
+                      "type": "null"
+                    },
+                    "path": {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "integer",
+                            "minimum": 0
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "source": {
+                      "const": "evaluator_contract"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "path": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "values": {
+            "maxItems": 0
+          },
+          "comparator": {
+            "enum": [
+              "gt",
+              "gte",
+              "lt",
+              "lte"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "native_direction": {
+            "const": "higher_is_more_suspicious"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "comparator": {
+            "enum": [
+              "gt",
+              "gte"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "native_direction": {
+            "const": "lower_is_more_suspicious"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "comparator": {
+            "enum": [
+              "lt",
+              "lte"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "json": {
+      "anyOf": [
+        {
+          "type": [
+            "null",
+            "boolean",
+            "number",
+            "string"
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/json"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/json"
+          }
+        }
+      ]
+    }
+  }
+}

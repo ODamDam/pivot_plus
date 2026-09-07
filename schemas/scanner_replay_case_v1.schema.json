@@ -1,0 +1,377 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "scanner_replay_case_v1.schema.json",
+  "title": "ScannerReplayCase v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "generation_id",
+    "production_case_id",
+    "sample_id",
+    "request_mode",
+    "trusted_instruction",
+    "normal_task",
+    "trust_boundary",
+    "trusted_context",
+    "untrusted_input",
+    "injection_location",
+    "model_visible_messages",
+    "response_text",
+    "response_sha256",
+    "attack_objective",
+    "objective_status",
+    "objective_provenance",
+    "observation_surface",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "scanner_replay_case.v1"
+    },
+    "generation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "production_case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sample_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "request_mode": {
+      "enum": [
+        "attack",
+        "direct"
+      ]
+    },
+    "trusted_instruction": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "normal_task": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "trust_boundary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "trusted_context": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "untrusted_input": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "injection_location": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "model_visible_messages": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "role",
+          "content"
+        ],
+        "properties": {
+          "role": {
+            "enum": [
+              "system",
+              "user"
+            ]
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "response_text": {
+      "type": "string"
+    },
+    "response_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "attack_objective": {
+      "type": "null"
+    },
+    "objective_status": {
+      "const": "unavailable"
+    },
+    "objective_provenance": {
+      "const": "no_verified_response_independent_source"
+    },
+    "observation_surface": {
+      "enum": [
+        "response_only",
+        "request_and_response",
+        "trusted_context_untrusted_input_and_response"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_run_id",
+        "target_git_commit",
+        "production_results",
+        "execution_plan",
+        "generation_manifest",
+        "run_manifest",
+        "source_case_id",
+        "source_row_locator",
+        "source_artifact",
+        "provider",
+        "model",
+        "replicate_index",
+        "random_seed",
+        "generation_options",
+        "request_schema",
+        "materialization_recipe_id"
+      ],
+      "properties": {
+        "target_run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_git_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{40}$"
+        },
+        "production_results": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "identity",
+            "sha256"
+          ],
+          "properties": {
+            "identity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "execution_plan": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "identity",
+            "sha256"
+          ],
+          "properties": {
+            "identity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "generation_manifest": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "identity",
+            "sha256"
+          ],
+          "properties": {
+            "identity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "run_manifest": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "identity",
+            "sha256"
+          ],
+          "properties": {
+            "identity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "source_case_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_row_locator": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_artifact": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "identity",
+            "sha256"
+          ],
+          "properties": {
+            "identity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "replicate_index": {
+          "enum": [
+            "r1",
+            "r2",
+            "r3"
+          ]
+        },
+        "random_seed": {
+          "type": "integer"
+        },
+        "generation_options": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "seed",
+            "temperature",
+            "top_p",
+            "max_tokens"
+          ],
+          "properties": {
+            "seed": {
+              "type": "integer"
+            },
+            "temperature": {
+              "type": "number"
+            },
+            "top_p": {
+              "type": "number"
+            },
+            "max_tokens": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "request_schema": {
+          "type": "string",
+          "minLength": 1
+        },
+        "materialization_recipe_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "request_mode": {
+            "const": "attack"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "trusted_instruction": {
+            "type": "string",
+            "minLength": 1
+          },
+          "normal_task": {
+            "type": "string",
+            "minLength": 1
+          },
+          "trust_boundary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "untrusted_input": {
+            "type": "string",
+            "minLength": 1
+          },
+          "injection_location": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "trusted_instruction": {
+            "type": "string",
+            "minLength": 1
+          },
+          "normal_task": {
+            "type": "string",
+            "minLength": 1
+          },
+          "trust_boundary": {
+            "type": "null"
+          },
+          "trusted_context": {
+            "type": "null"
+          },
+          "untrusted_input": {
+            "type": "null"
+          },
+          "injection_location": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}
