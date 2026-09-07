@@ -7,11 +7,14 @@ on:
     paths:
       - .github/workflows/outcome-gt-judge-runner-v2.yml
       - docs/outcome_gt/OUTCOME_GT_JUDGE_SYSTEM_PROMPT_v2.txt
+      - docs/outcome_gt/OUTCOME_GT_COMMON_CANARY_SELECTION_v1.md
+      - data/outcome_gt/adjudication_v1/canary/common_canary_selection_v1.json
       - schemas/outcome_gt_annotator_provenance_v2.schema.json
       - schemas/outcome_gt_judge_request_v2.schema.json
       - schemas/outcome_gt_judge_semantic_response_v1.schema.json
       - schemas/outcome_gt_judge_raw_result_v1.schema.json
       - scripts/outcome_gt/materialize_outcome_gt_judge_requests_v2.py
+      - scripts/outcome_gt/materialize_outcome_gt_common_canary_v1.py
       - scripts/outcome_gt/run_outcome_gt_judge_v2.py
       - scripts/outcome_gt/validate_outcome_gt_judge_run_v2.py
       - tests/outcome_gt/test_outcome_gt_judge_runner_v2.py

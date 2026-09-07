@@ -12,6 +12,7 @@ from typing import Any
 import jsonschema
 
 import run_outcome_gt_judge_v1 as base
+import materialize_outcome_gt_common_canary_v1 as common_canary
 from outcome_gt_annotation_common_v1 import (
     EXPECTED_ROWS,
     ROOT,
@@ -59,9 +60,10 @@ def stable_run_id(
     seed: int,
     max_tokens: int,
     limit: int | None,
+    selection_sha256: str | None = None,
 ) -> str:
     letter = "A" if pass_id == "pass_a" else "B"
-    material = canonical_json({
+    identity = {
         "runner_version": "outcome-gt-judge-runner-v2",
         "pass_id": pass_id,
         "request_sha256": request_sha256,
@@ -76,9 +78,58 @@ def stable_run_id(
         "seed": seed,
         "max_tokens": max_tokens,
         "limit": limit,
-    })
+    }
+    if selection_sha256 is not None:
+        identity["selection_sha256"] = selection_sha256
+    material = canonical_json(identity)
     suffix = hashlib.sha256(material.encode("utf-8")).hexdigest()[:16].upper()
     return f"OGTJRUN-V2-{letter}-{suffix}"
+
+
+def limit_requests(requests: list[dict[str, Any]], limit: int | None) -> list[dict[str, Any]]:
+    return requests[:limit] if limit else requests
+
+
+def final_run_status(
+    completed: int,
+    target: int,
+    *,
+    limit: int | None,
+    selection_used: bool,
+) -> str:
+    if completed == target and (limit is not None or selection_used):
+        return "CANARY_COMPLETE"
+    if completed == EXPECTED_ROWS and target == EXPECTED_ROWS:
+        return "COMPLETE"
+    return "INCOMPLETE"
+
+
+def filter_requests_by_selection(
+    requests: list[dict[str, Any]],
+    private_keys: list[dict[str, Any]],
+    selection: dict[str, Any],
+) -> list[dict[str, Any]]:
+    selected = selection.get("ordered_generation_ids")
+    if not isinstance(selected, list) or not selected:
+        raise ValueError("selection has no ordered generation_id list")
+    if len(selected) != len(set(selected)):
+        raise ValueError("selection generation_id values must be unique")
+    key_by_assignment = {row.get("assignment_item_id"): row for row in private_keys}
+    if len(key_by_assignment) != len(private_keys):
+        raise ValueError("private-key assignment_item_id values are not unique")
+    request_by_generation: dict[str, dict[str, Any]] = {}
+    for request in requests:
+        key = key_by_assignment.get(request.get("assignment_item_id"))
+        if key is None:
+            raise ValueError("request has no private-key generation lineage")
+        generation_id = key.get("generation_id")
+        if generation_id in request_by_generation:
+            raise ValueError("request generation_id values are not unique")
+        request_by_generation[generation_id] = request
+    missing = [generation_id for generation_id in selected if generation_id not in request_by_generation]
+    if missing:
+        raise ValueError(f"missing selected generation in pass request population: {len(missing)}")
+    return [request_by_generation[generation_id] for generation_id in selected]
 
 
 def load_request_manifest(pass_id: str) -> tuple[Path, dict[str, Any]]:
@@ -107,7 +158,9 @@ def main() -> int:
     parser.add_argument("--max-tokens", type=int, default=768)
     parser.add_argument("--timeout", type=float, default=180.0)
     parser.add_argument("--max-transport-retries", type=int, default=1)
-    parser.add_argument("--limit", type=int)
+    selection_group = parser.add_mutually_exclusive_group()
+    selection_group.add_argument("--limit", type=int)
+    selection_group.add_argument("--selection-file", type=Path)
     args = parser.parse_args()
 
     if not 0 <= args.max_transport_retries <= 3:
@@ -117,9 +170,20 @@ def main() -> int:
 
     request_path, request_manifest = load_request_manifest(args.pass_id)
     all_requests = read_jsonl(request_path)
-    requests = all_requests[: args.limit] if args.limit else all_requests
     if len(all_requests) != EXPECTED_ROWS:
         raise ValueError(f"expected {EXPECTED_ROWS} judge requests")
+    selection_sha256 = None
+    selection_path = None
+    if args.selection_file:
+        selection = common_canary.load_validated_selection(args.selection_file)
+        private_keys = read_jsonl(
+            common_canary.PASS_ROOT / args.pass_id / "private_key_1746_v1.jsonl"
+        )
+        requests = filter_requests_by_selection(all_requests, private_keys, selection)
+        selection_sha256 = sha256_file(args.selection_file)
+        selection_path = str(args.selection_file.resolve())
+    else:
+        requests = limit_requests(all_requests, args.limit)
 
     provider_version, model_digest = base.ollama_metadata(args.base_url, args.model, args.timeout)
     runner_commit = base.git_head()
@@ -133,6 +197,7 @@ def main() -> int:
         args.seed,
         args.max_tokens,
         args.limit,
+        selection_sha256,
     )
     run_dir = RUN_ROOT / args.pass_id / run_id
     raw_path = run_dir / "raw_results.jsonl"
@@ -162,6 +227,8 @@ def main() -> int:
             "prompt_sha256": PROMPT_SHA256,
             "request_sha256": request_manifest["request_sha256"],
             "structured_output_schema_sha256": STRUCTURED_OUTPUT_SCHEMA_SHA256,
+            "selection_path": selection_path,
+            "selection_sha256": selection_sha256,
         }
         for key, expected in immutable.items():
             if prior.get(key) != expected:
@@ -184,6 +251,8 @@ def main() -> int:
         "assignment_sha256": request_manifest["source_assignment_sha256"],
         "request_sha256": request_manifest["request_sha256"],
         "structured_output_schema_sha256": STRUCTURED_OUTPUT_SCHEMA_SHA256,
+        "selection_path": selection_path,
+        "selection_sha256": selection_sha256,
         "sampling": {"temperature": 0.0, "top_p": 1.0, "seed": args.seed, "max_tokens": args.max_tokens},
         "retry_policy": {"max_transport_retries": args.max_transport_retries, "semantic_retry": False, "parse_retry": False},
         "started_at": started_at,
@@ -292,7 +361,12 @@ def main() -> int:
 
     completed = len(decisions)
     total_failed = len(requests) - completed
-    final_status = "CANARY_COMPLETE" if args.limit is not None and completed == len(requests) else "COMPLETE" if completed == EXPECTED_ROWS else "INCOMPLETE"
+    final_status = final_run_status(
+        completed,
+        len(requests),
+        limit=args.limit,
+        selection_used=args.selection_file is not None,
+    )
     provenance = dict(base_provenance)
     provenance.update({"finished_at": base.utc_now(), "status": final_status, "rows_completed": completed, "rows_failed": total_failed})
     errors = list(provenance_validator.iter_errors(provenance))

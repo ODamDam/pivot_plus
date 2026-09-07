@@ -1,0 +1,44 @@
+{
+  "creation_provenance": {
+    "generator": "scripts/outcome_gt/materialize_outcome_gt_common_canary_v1.py",
+    "ground_truth_used": false,
+    "identifier": "generation_id",
+    "judge_model_used": false,
+    "judge_result_used": false,
+    "response_content_used": false
+  },
+  "ordered_generation_ids": [
+    "TPC-V1-45056C75554143D364D9::attack::r1",
+    "TPC-V1-BA50A05C55A5BA567BF9::attack::r3",
+    "TPC-V1-5D23B9D55154EAF2B2D3::attack::r2",
+    "TPC-V1-FB26E9E71C6E97830E80::attack::r3",
+    "TPC-V1-7CEFA8B96DDE5FEEF23B::attack::r3",
+    "TPC-V1-AE7E1F01AF82BA22964B::attack::r1",
+    "TPC-V1-AF60FF5693E30A18FC30::attack::r2",
+    "TPC-V1-93EAAAE4E6DE79A671FB::attack::r3",
+    "TPC-V1-159752C78EEC03DE620E::attack::r2",
+    "TPC-V1-EC28D4A3F0A46BC956F9::attack::r2"
+  ],
+  "schema_version": "outcome_gt_common_canary_selection.v1",
+  "selected_count": 10,
+  "selection_algorithm": "sha256-rank-ascending-v1",
+  "selection_namespace": "OUTCOME_GT_COMMON_CANARY_V1",
+  "selection_version": "outcome-gt-common-canary-v1",
+  "source_population": {
+    "count": 1746,
+    "path": "data/outcome_gt/adjudication_v1/input/outcome_gt_adjudication_input_1746_v1.jsonl",
+    "sha256": "bbc8c182d497d3fe0e5a0bdc771ad9ebea0f2cc874d0723ea8ea276f63767fb0"
+  },
+  "source_requests": {
+    "pass_a": {
+      "count": 1746,
+      "path": "data/outcome_gt/adjudication_v1/judge_requests/pass_a/judge_requests_1746_v2.jsonl",
+      "sha256": "bfb98dc1b622d28be134097c4e7e3141fdf94f9c27100c3d98606a0536817e0a"
+    },
+    "pass_b": {
+      "count": 1746,
+      "path": "data/outcome_gt/adjudication_v1/judge_requests/pass_b/judge_requests_1746_v2.jsonl",
+      "sha256": "7c7a712ccfff222cd03706635f02eea39d9fe4a66d4bb0e0146b028037e2771e"
+    }
+  }
+}
